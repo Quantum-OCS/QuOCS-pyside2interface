@@ -1,0 +1,4 @@
+{
+  "function_type": "lambda_function",
+  "lambda_function": "lambda t: 0.0*t"
+}

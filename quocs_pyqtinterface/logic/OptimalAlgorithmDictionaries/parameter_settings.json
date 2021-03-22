@@ -1,0 +1,7 @@
+{
+        "parameter_name": "Parameter",
+        "lower_limit": -2.0,
+        "upper_limit": 2.0,
+        "initial_value": 0.0,
+        "initial_variation": 0.5
+}

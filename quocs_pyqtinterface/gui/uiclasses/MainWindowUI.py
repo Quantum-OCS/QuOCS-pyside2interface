@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/mrossign/QuOCS/PyQtInterface/quocs_pyqtinterface/gui/uifiles/MainWindow.ui'
+# Form implementation generated from reading ui file '/home/mrossign/QuOCS/QuOCS-pyqtinterface/quocs_pyqtinterface/gui/uifiles/MainWindow.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
 #
@@ -119,9 +119,9 @@ class Ui_MainWindow(object):
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         spacerItem9 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem9)
-        self.label_2 = QtWidgets.QLabel(self.main_widget)
-        self.label_2.setObjectName("label_2")
-        self.horizontalLayout_2.addWidget(self.label_2)
+        self.pulse_index_label = QtWidgets.QLabel(self.main_widget)
+        self.pulse_index_label.setObjectName("pulse_index_label")
+        self.horizontalLayout_2.addWidget(self.pulse_index_label)
         spacerItem10 = QtWidgets.QSpacerItem(78, 17, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_2.addItem(spacerItem10)
         self.verticalLayout_6.addLayout(self.horizontalLayout_2)
@@ -240,7 +240,7 @@ class Ui_MainWindow(object):
         self.name_parameter_label.setText(_translate("MainWindow", "Parameter"))
         self.value_parameter_label.setText(_translate("MainWindow", "0.0"))
         self.drop_out_parameter_button.setText(_translate("MainWindow", "Drop Out"))
-        self.label_2.setText(_translate("MainWindow", "Pulse"))
+        self.pulse_index_label.setText(_translate("MainWindow", "Pulse"))
         self.drop_out_fom_button.setText(_translate("MainWindow", "Drop Out"))
         self.previous_pulse_plot_button.setText(_translate("MainWindow", "Previous"))
         self.next_pulse_plot_button.setText(_translate("MainWindow", "Next"))

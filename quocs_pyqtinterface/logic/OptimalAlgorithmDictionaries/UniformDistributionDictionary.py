@@ -6,6 +6,8 @@ class UniformDistributionDictionary(SettingsDictionary):
     def __init__(self, loaded_dictionary=None):
         # Default values
         self.distribution_name = "Uniform"
+        self.distribution_class = "Uniform"
+        self.distribution_module = "quocs_optlib.pulses.frequency.Uniform"
         self.lower_limit = 0.1
         self.upper_limit = 3.0
 

@@ -99,7 +99,7 @@ class ControlsSettings(QtWidgets.QWidget, Ui_Form):
         for i in range(tabs_number):
             control_widget = self.controls_tab.widget(i)
             if control_widget.control_type == "time":
-                time_dict[control_widget.time_dictionary.time_name] = control_widget.time_dictionary.time_guess
+                time_dict[control_widget.time_dictionary.time_name] = control_widget.time_dictionary.initial_value
         # Update the time combobox in all pulses
         for i in range(tabs_number):
             control_widget = self.controls_tab.widget(i)

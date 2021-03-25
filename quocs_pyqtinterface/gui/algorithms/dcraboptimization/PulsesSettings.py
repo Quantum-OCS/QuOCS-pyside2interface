@@ -56,6 +56,7 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         # Set validator
         self.upper_limit_line_edit.setValidator(QtGui.QDoubleValidator())
         self.upper_limit_line_edit.setValidator(QtGui.QDoubleValidator())
+        self.amplitude_variation_line_edit.setValidator(QtGui.QDoubleValidator())
 
         # Connections
         self.lambda_initial_guess_radio_button.pressed.connect(self.set_initial_guess_lambda_function_widget)
@@ -70,6 +71,7 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         self.pulse_name_line_edit.textChanged.connect(self.set_pulse_name)
         self.upper_limit_line_edit.textChanged.connect(self.set_upper_limit)
         self.lower_limit_line_edit.textChanged.connect(self.set_lower_limit)
+        self.amplitude_variation_line_edit.textChanged.connect(self.set_amplitude_variation)
         self.bins_number_spinbox.valueChanged.connect(self.set_bins_number)
 
         self.time_name_combobox.currentIndexChanged.connect(self.set_time_combobox)
@@ -121,6 +123,8 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         # Amplitude Limits
         self.upper_limit_line_edit.setText(str(self.pulse_dictionary.upper_limit))
         self.lower_limit_line_edit.setText(str(self.pulse_dictionary.lower_limit))
+        # Amplitude variation
+        self.amplitude_variation_line_edit.setText(str(self.pulse_dictionary.amplitude_variation))
         # Time Settings
         self.bins_number_spinbox.setValue(self.pulse_dictionary.bins_number)
         # Basis

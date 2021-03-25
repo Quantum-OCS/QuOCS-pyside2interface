@@ -27,8 +27,10 @@ class FourierBasis(QtWidgets.QWidget, Ui_Form):
         distribution_type = self.frequency_setting_area.widget().distribution_dictionary.distribution_name
         self.freq_distribution_combobox.itemText(frequency_distribution_list.index(distribution_type))
 
-    def set_basis_vector_number(self):
-        self.basis_dictionary.basis_vector_number = self.basis_vector_number_spinbox.value()
+    def set_basis_vector_number(self, basis_vector_number: int):
+        self.basis_dictionary.basis_vector_number = basis_vector_number
 
     def get_dictionary(self):
+        # Get the dictionary from the frequency distribution
+        self.basis_dictionary.random_frequencies_distribution = self.uniform_distribution_form.get_dictionary()
         return self.basis_dictionary.get_dictionary()

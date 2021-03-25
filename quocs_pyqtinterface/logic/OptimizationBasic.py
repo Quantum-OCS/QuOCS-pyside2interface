@@ -31,10 +31,8 @@ class OptimizationBasic:
     message_label_signal = QtCore.Signal(str)
     # Fom plot
     fom_plot_signal = QtCore.Signal(int, float)
-    # Pulse plot
-    pulse_plot_signal = QtCore.Signal(list, list)
-    # Parameters update
-    parameters_update_signal = QtCore.Signal(list)
+    # Pulses, time grids, parameters update
+    controls_update_signal = QtCore.Signal(list, list, list)
     # Handle exit obj
     handle_exit_obj = HE()
 

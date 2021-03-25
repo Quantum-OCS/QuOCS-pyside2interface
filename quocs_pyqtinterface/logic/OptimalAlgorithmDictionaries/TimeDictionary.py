@@ -6,7 +6,7 @@ class TimeDictionary(SettingsDictionary):
     def __init__(self, loaded_dictionary=None):
         # Default values
         self.time_name = "time"
-        self.time_guess = 1.0
+        self.initial_value = 1.0
 
         super().__init__(loaded_dictionary)
 

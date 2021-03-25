@@ -41,10 +41,6 @@ class dCRABSettingsDialog(QtWidgets.QDialog, Ui_Dialog):
         ######################################################
         # Dictionary Settings
         ######################################################
-        self.dcrab_global_dictionary = dCRABGlobalDictionary()
-        ######################################################
-        # Tabs Initialization
-        ######################################################
         [dcrab_settings, general_settings_nm, controls_settings, comm_fom_settings] = [None, None, None, None]
         if loaded_dictionary is not None:
             opti_dictionary = loaded_dictionary["optimization_dictionary"]
@@ -52,6 +48,10 @@ class dCRABSettingsDialog(QtWidgets.QDialog, Ui_Dialog):
             general_settings_nm = opti_dictionary["dsm_settings"]
             controls_settings = [opti_dictionary["pulses"], opti_dictionary["parameters"], opti_dictionary["times"]]
             comm_fom_settings = [loaded_dictionary["communication"], loaded_dictionary["figure_of_merit"]]
+        self.dcrab_global_dictionary = dCRABGlobalDictionary(loaded_dictionary=opti_dictionary)
+        ######################################################
+        # Tabs Initialization
+        ######################################################
 
         self.curr_tab_index = -1
         # dCRAB Settings
@@ -117,7 +117,7 @@ class dCRABSettingsDialog(QtWidgets.QDialog, Ui_Dialog):
                                                          os.getcwd(), "json (*.json)", options=
                                                          QtWidgets.QFileDialog.DontUseNativeDialog)
         from quocs_pyqtinterface.logic.utilities.writejsonfile import writejsonfile
-        writejsonfile(filename[0] + ".json", total_dictionary)
+        writejsonfile(filename[0], total_dictionary)
 
     def load_opti_dictionary(self):
         """Send a signal to the main window with the total dictionary and close the dialog"""

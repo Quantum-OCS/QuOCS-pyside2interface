@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file '/home/mrossign/QuOCS/PyQtInterface/quocs_pyqtinterface/gui/uifiles/PulseDefinition.ui'
+# Form implementation generated from reading ui file '/home/mrossign/QuOCS/QuOCS-pyqtinterface/quocs_pyqtinterface/gui/uifiles/PulseDefinition.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
 #
@@ -65,9 +65,9 @@ class Ui_Form(object):
         self.label_11 = QtWidgets.QLabel(Form)
         self.label_11.setObjectName("label_11")
         self.horizontalLayout_12.addWidget(self.label_11)
-        self.lower_limit_line_edit_2 = QtWidgets.QLineEdit(Form)
-        self.lower_limit_line_edit_2.setObjectName("lower_limit_line_edit_2")
-        self.horizontalLayout_12.addWidget(self.lower_limit_line_edit_2)
+        self.amplitude_variation_line_edit = QtWidgets.QLineEdit(Form)
+        self.amplitude_variation_line_edit.setObjectName("amplitude_variation_line_edit")
+        self.horizontalLayout_12.addWidget(self.amplitude_variation_line_edit)
         spacerItem5 = QtWidgets.QSpacerItem(40, 20, QtWidgets.QSizePolicy.Expanding, QtWidgets.QSizePolicy.Minimum)
         self.horizontalLayout_12.addItem(spacerItem5)
         self.verticalLayout.addLayout(self.horizontalLayout_12)

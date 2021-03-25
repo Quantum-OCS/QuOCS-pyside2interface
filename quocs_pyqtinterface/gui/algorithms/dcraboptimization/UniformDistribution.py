@@ -38,4 +38,4 @@ class UniformDistribution(QtWidgets.QWidget, Ui_Form):
         self.upper_limit_line_edit.setText(str(self.distribution_dictionary.upper_limit))
 
     def get_dictionary(self):
-        return {"random_frequencies_distribution": self.distribution_dictionary.get_dictionary()}
+        return self.distribution_dictionary.get_dictionary()

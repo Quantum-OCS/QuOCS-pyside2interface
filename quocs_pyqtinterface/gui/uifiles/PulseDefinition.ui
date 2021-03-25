@@ -142,7 +142,7 @@
       </widget>
      </item>
      <item>
-      <widget class="QLineEdit" name="lower_limit_line_edit_2"/>
+      <widget class="QLineEdit" name="amplitude_variation_line_edit"/>
      </item>
      <item>
       <spacer name="horizontalSpacer_19">

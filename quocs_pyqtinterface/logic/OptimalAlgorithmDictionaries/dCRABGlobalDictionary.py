@@ -7,6 +7,8 @@ class dCRABGlobalDictionary(SettingsDictionary):
         # Default values
         self.optimization_client_name = "Optimization_dCRAB_Test"
         self.opti_algorithm_name = "dCRAB"
+        self.opti_algorithm_module = "quocs_optlib.optimalalgorithms.dCRABAlgorithm"
+        self.opti_algorithm_class = "DCrabAlgorithm"
         self.algorithm_settings = {}
         self.dsm_settings = {}
         self.pulses = []

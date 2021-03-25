@@ -29,7 +29,7 @@ class TimeSettings(QtWidgets.QWidget, Ui_Form):
 
     def _initialize_settings(self):
         self.time_name_line_edit.setText(self.time_dictionary.time_name)
-        self.time_guess_line_edit.setText(str(self.time_dictionary.time_guess))
+        self.time_guess_line_edit.setText(str(self.time_dictionary.initial_value))
 
     def set_time_name(self, time_name):
         self.time_dictionary.time_name = time_name
@@ -38,7 +38,7 @@ class TimeSettings(QtWidgets.QWidget, Ui_Form):
             self.update_time_combo_box_pulse.emit()
 
     def set_time_guess(self, time_guess):
-        self.time_dictionary.time_guess = float(time_guess)
+        self.time_dictionary.initial_value = float(time_guess)
         if not self.is_initialization:
             self.update_time_combo_box_pulse.emit()
 

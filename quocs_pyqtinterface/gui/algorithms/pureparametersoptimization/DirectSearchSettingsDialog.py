@@ -102,7 +102,7 @@ class DirectSearchSettingsDialog(QtWidgets.QDialog, Ui_Dialog):
                                                          os.getcwd(), "json (*.json)", options=
                                                          QtWidgets.QFileDialog.DontUseNativeDialog)
         from quocs_pyqtinterface.logic.utilities.writejsonfile import writejsonfile
-        writejsonfile(filename[0] + ".json", total_dictionary)
+        writejsonfile(filename[0], total_dictionary)
 
     def load_opti_dictionary(self):
         """Send a signal to the main window with the total dictionary and close the dialog"""

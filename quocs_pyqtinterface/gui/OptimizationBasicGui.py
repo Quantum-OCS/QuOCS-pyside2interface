@@ -67,6 +67,9 @@ class OptimizationBasicGui:
     fom_plotter_dict = {}
     pulses_plotter_dict = {}
     pulses_plotter_list: list = [{"pulse_index": 0, "plotter": {"pyqt_obj": None, "data_obj": None}}]
+    pulses_plot_limits: [int, int] = [0, 0]
+    curr_pulse_plot_number: int = 0
+
     pulses_data_dict = {}
     iterations_number: list = []
     fom_evaluation: list = []
@@ -110,8 +113,14 @@ class OptimizationBasicGui:
         self.pulses_plotter_dict["0"] = self._mw.pulses_plotter
         self.pulses_data_dict["0"] = None
         self.pulses_plotter_list[0]["plotter"]["pyqt_obj"] = self._mw.pulses_plotter
+        # self._mw.previous_pulse_plot_button.setEnabled(False)
+        # self._mw.next_pulse_plot_button.setEnabled(False)
         self._mw.previous_pulse_plot_button.clicked.connect(self.previous_plot_pulse)
         self._mw.next_pulse_plot_button.clicked.connect(self.next_plot_pulse)
+        # Disabled dropout buttons atm
+        self._mw.drop_out_fom_button.setEnabled(False)
+        self._mw.drop_out_pulse_button.setEnabled(False)
+        self._mw.drop_out_parameter_button.setEnabled(False)
 
         #########################################################################
         # Signals
@@ -131,21 +140,30 @@ class OptimizationBasicGui:
         # Update the plot data signal
         self.optimizationlogic.fom_plot_signal.connect(self.update_fom_graph)
         # Update the pulse plot
-        self.optimizationlogic.pulse_plot_signal.connect(self.update_pulses_graph)
+        self.optimizationlogic.controls_update_signal.connect(self.controls_update)
         # Update the parameters array
-        self.optimizationlogic.parameters_update_signal.connect(self.update_parameters_list)
+        # self.optimizationlogic.parameters_update_signal.connect(self.update_parameters_list)
         # Dictionaries signal
         self.load_dictionary_signal.connect(self.update_optimization_dictionary)
 
     def next_plot_pulse(self):
         # [{"pulse_index": 0, "plotter": {"pyqt_obj": None, "data_obj": None}}]
         # TODO Put limits on pulse index
-        self.pulses_plotter_list[0]["pulse_index"] += 1
+        next_conditions = [self.curr_pulse_plot_number >= self.pulses_plot_limits[0],
+                           self.curr_pulse_plot_number < self.pulses_plot_limits[1] - 1]
+        if all(next_conditions):
+            self.curr_pulse_plot_number += 1
+            self.pulses_plotter_list[0]["pulse_index"] += 1
+
 
     def previous_plot_pulse(self):
         # [{"pulse_index": 0, "plotter": {"pyqt_obj": None, "data_obj": None}}]
         # TODO Put limits on pulse_index
-        self.pulses_plotter_list[0]["pulse_index"] -= 1
+        previous_conditions = [self.curr_pulse_plot_number > self.pulses_plot_limits[0],
+                               self.curr_pulse_plot_number <= self.pulses_plot_limits[1] - 1]
+        if all(previous_conditions):
+            self.curr_pulse_plot_number -= 1
+            self.pulses_plotter_list[0]["pulse_index"] -= 1
 
     @QtCore.Slot(int)
     def update_fom_plotter_dictionary(self, id_window):
@@ -180,7 +198,8 @@ class OptimizationBasicGui:
             opti_algorithm_name = user_data["optimization_dictionary"]["opti_algorithm_name"]
             if opti_algorithm_name in implemented_algorithms:
                 print("I am loading {0} dialog".format(opti_algorithm_name))
-                optimization_dialog = implemented_algorithms[opti_algorithm_name](loaded_dictionary=user_data, load_full_dictionary_signal=self.load_dictionary_signal)
+                optimization_dialog = implemented_algorithms[opti_algorithm_name](loaded_dictionary=user_data,
+                                                                                  load_full_dictionary_signal=self.load_dictionary_signal)
                 optimization_dialog.exec_()
             else:
                 # TODO Raise error in the GUI
@@ -193,8 +212,7 @@ class OptimizationBasicGui:
         self.fom_plotter_dict[str(id_plotter_window)] = plotter_window.fom_plotter
         plotter_window.show()
 
-    @QtCore.Slot(list)
-    def update_parameters_list(self, parameters_list):
+    def _update_parameters_list(self, parameters_list):
         """Update the parameters list at every iteration"""
         self.parameters_list = parameters_list
         # Update parameter range in the spinbox
@@ -204,8 +222,10 @@ class OptimizationBasicGui:
 
     def _update_parameter_choice(self):
         """display in the parameter label the parameter you choose"""
-        parameter_value = str(self.parameters_list[self._mw.select_parameter_spinbox.value() - 1])
-        self._mw.value_parameter_label.setText(parameter_value)
+        parameter_index = self._mw.select_parameter_spinbox.value() - 1
+        if parameter_index >=0:
+            parameter_value = str(self.parameters_list[parameter_index])
+            self._mw.value_parameter_label.setText(parameter_value)
 
     @QtCore.Slot()
     def finished_optimization(self):
@@ -215,22 +235,28 @@ class OptimizationBasicGui:
         # Enable the start button
         self._mw.start_optimization_button.setEnabled(True)
 
-    @QtCore.Slot(list, list)
-    def update_pulses_graph(self, time_grids_list, pulses_list):
+    @QtCore.Slot(list, list, list)
+    def controls_update(self, pulses_list, time_grids_list, parameters_list):
+        self.pulses_plot_limits = [0, len(pulses_list)]
+        self._update_pulses_graph(time_grids_list, pulses_list)
+        self._update_parameters_list(parameters_list)
+
+    def _update_pulses_graph(self, time_grids_list, pulses_list):
         """Update all the current pulses plotters"""
         index_list = [i for i in range(len(pulses_list))]
-        print("I am in the update pulses module")
+        # print("I am in the update pulses module")
         for time_grid, pulse, index in zip(time_grids_list, pulses_list, index_list):
             # [{"pulse_index": 0, "plotter": {"pyqt_obj": None, "data_obj": None}}]
             for plotter_obj in self.pulses_plotter_list:
                 if plotter_obj["pulse_index"] == index:
+                    self._mw.pulse_index_label.setText("Pulse {0}".format(self.curr_pulse_plot_number))
                     if plotter_obj["plotter"]["data_obj"] is None:
-                        print("First iteration")
+                        # print("First iteration")
                         pen = pg.mkPen(color=(255, 0, 0))
                         plotter_obj["plotter"]["data_obj"] = plotter_obj["plotter"]["pyqt_obj"].plot(time_grid, pulse,
                                                                                                      pen=pen)
                     else:
-                        print("Update")
+                        # print("Update")
                         plotter_obj["plotter"]["data_obj"].setData(time_grid, pulse)
 
     @QtCore.Slot(int, float)
@@ -243,6 +269,7 @@ class OptimizationBasicGui:
             # If the first iteration create the line
             if len(self.fom_evaluation) == 1:
                 pen = pg.mkPen(color=(255, 0, 0))
+                # TODO annotate the fom_data type before the constructor
                 self.fom_data = self.fom_plotter_dict[plotter_id].plot(self.iterations_number, self.fom_evaluation,
                                                                        pen=pen, symbol='o')
             else:

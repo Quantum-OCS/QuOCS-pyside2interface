@@ -13,19 +13,7 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#
-#  Licensed under the Apache License, Version 2.0 (the "License");
-#  you may not use this file except in compliance with the License.
-#  You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#  See the License for the specific language governing permissions and
-#  limitations under the License.
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 from qtpy import QtCore
 from qtpy import QtWidgets
 import os
@@ -54,7 +42,8 @@ class dCRABSettingsDialog(QtWidgets.QDialog, Ui_Dialog):
         ######################################################
         # Dictionary Settings
         ######################################################
-        [dcrab_settings, general_settings_nm, controls_settings, comm_fom_settings] = [None, None, None, None]
+        [opti_dictionary, dcrab_settings, general_settings_nm, controls_settings, comm_fom_settings] = \
+            [None for _ in range(5)]
         if loaded_dictionary is not None:
             opti_dictionary = loaded_dictionary["optimization_dictionary"]
             dcrab_settings = opti_dictionary["algorithm_settings"]

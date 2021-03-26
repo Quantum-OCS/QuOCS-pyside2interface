@@ -27,4 +27,4 @@ requirements = [
     "PySide2>=5.15.2"
 ]
 
-setup(name="quocs_pyqtinterface", packages=find_packages(), version="develop", install_requires=requirements)
+setup(name="quocs_pyqtinterface", packages=find_packages(), version="dev", install_requires=requirements)

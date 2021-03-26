@@ -26,11 +26,16 @@ class LambdaFunction(QtWidgets.QWidget, Ui_Form):
         self.setupUi(self)
         # Create the dictionary
         self.lambda_function_dictionary = LambdaFunctionDictionary(loaded_dictionary=loaded_dictionary)
+        # Connection
+        self.lambda_function_line_edit.textChanged.connect(self.set_lambda_function)
         # Initialization
         self._initialize_settings()
 
     def _initialize_settings(self):
         self.lambda_function_line_edit.setText(self.lambda_function_dictionary.lambda_function)
+
+    def set_lambda_function(self, lambda_function):
+        self.lambda_function_dictionary.lambda_function = lambda_function
 
     def get_dictionary(self):
         return self.lambda_function_dictionary.get_dictionary()

@@ -24,7 +24,7 @@ from quocs_pyqtinterface.gui.uiclasses.CommFomSettingsUI import Ui_Form
 
 
 class CommFom(QtWidgets.QWidget, Ui_Form):
-    """Dialogue for the Communication - Figure of merit evaluation"""
+    """Widget for Communication and Figure of merit evaluation"""
     def __init__(self, parent=None, loaded_dictionary=None):
         super().__init__(parent)
         self.setupUi(self)

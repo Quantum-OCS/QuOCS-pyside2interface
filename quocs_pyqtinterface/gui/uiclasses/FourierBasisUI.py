@@ -14,12 +14,13 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(847, 229)
+        Form.resize(901, 229)
         sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Expanding)
         sizePolicy.setHorizontalStretch(0)
         sizePolicy.setVerticalStretch(0)
         sizePolicy.setHeightForWidth(Form.sizePolicy().hasHeightForWidth())
         Form.setSizePolicy(sizePolicy)
+        Form.setMinimumSize(QtCore.QSize(901, 100))
         self.verticalLayout = QtWidgets.QVBoxLayout(Form)
         self.verticalLayout.setSizeConstraint(QtWidgets.QLayout.SetMinAndMaxSize)
         self.verticalLayout.setObjectName("verticalLayout")
@@ -49,7 +50,7 @@ class Ui_Form(object):
         self.frequency_setting_area.setWidgetResizable(True)
         self.frequency_setting_area.setObjectName("frequency_setting_area")
         self.scrollAreaWidgetContents = QtWidgets.QWidget()
-        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 827, 100))
+        self.scrollAreaWidgetContents.setGeometry(QtCore.QRect(0, 0, 881, 100))
         self.scrollAreaWidgetContents.setObjectName("scrollAreaWidgetContents")
         self.frequency_setting_area.setWidget(self.scrollAreaWidgetContents)
         self.verticalLayout.addWidget(self.frequency_setting_area)

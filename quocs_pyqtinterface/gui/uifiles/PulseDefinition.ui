@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1086</width>
-    <height>527</height>
+    <height>538</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -242,7 +242,7 @@
      <property name="minimumSize">
       <size>
        <width>901</width>
-       <height>80</height>
+       <height>100</height>
       </size>
      </property>
      <property name="widgetResizable">
@@ -254,14 +254,21 @@
         <x>0</x>
         <y>0</y>
         <width>1066</width>
-        <height>78</height>
+        <height>122</height>
        </rect>
       </property>
      </widget>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_3">
+    <layout class="QHBoxLayout" name="horizontalLayout_4">
+     <item>
+      <widget class="QLabel" name="label_3">
+       <property name="text">
+        <string>Initial guess</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <spacer name="horizontalSpacer_3">
        <property name="orientation">
@@ -275,30 +282,6 @@
        </property>
       </spacer>
      </item>
-     <item>
-      <widget class="QLabel" name="label_3">
-       <property name="text">
-        <string>Initial guess</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_4">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_4">
      <item>
       <widget class="QRadioButton" name="lambda_initial_guess_radio_button">
        <property name="text">
@@ -359,7 +342,13 @@
      <property name="minimumSize">
       <size>
        <width>901</width>
-       <height>20</height>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>70</height>
       </size>
      </property>
      <property name="widgetResizable">
@@ -371,14 +360,21 @@
         <x>0</x>
         <y>0</y>
         <width>1066</width>
-        <height>56</height>
+        <height>68</height>
        </rect>
       </property>
      </widget>
     </widget>
    </item>
    <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
+    <layout class="QHBoxLayout" name="horizontalLayout_6">
+     <item>
+      <widget class="QLabel" name="label_4">
+       <property name="text">
+        <string>Scaling function</string>
+       </property>
+      </widget>
+     </item>
      <item>
       <spacer name="horizontalSpacer_7">
        <property name="orientation">
@@ -392,30 +388,6 @@
        </property>
       </spacer>
      </item>
-     <item>
-      <widget class="QLabel" name="label_4">
-       <property name="text">
-        <string>Scaling function</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer_8">
-       <property name="orientation">
-        <enum>Qt::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
-   <item>
-    <layout class="QHBoxLayout" name="horizontalLayout_6">
      <item>
       <widget class="QRadioButton" name="lambda_scaling_function_radio_button">
        <property name="text">
@@ -476,7 +448,13 @@
      <property name="minimumSize">
       <size>
        <width>901</width>
-       <height>20</height>
+       <height>50</height>
+      </size>
+     </property>
+     <property name="maximumSize">
+      <size>
+       <width>16777215</width>
+       <height>70</height>
       </size>
      </property>
      <property name="widgetResizable">
@@ -488,7 +466,7 @@
         <x>0</x>
         <y>0</y>
         <width>1066</width>
-        <height>57</height>
+        <height>68</height>
        </rect>
       </property>
      </widget>

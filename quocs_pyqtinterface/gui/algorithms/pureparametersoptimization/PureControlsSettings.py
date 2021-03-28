@@ -89,7 +89,7 @@ class PureControlsSettings(QtWidgets.QWidget, Ui_Form):
 
     def variation_changed(self, amplitude_variation: str):
         index = self.parameter_number_selected_spinbox.value()
-        self.parameters_obj_list[index - 1].initial_variation = float(amplitude_variation)
+        self.parameters_obj_list[index - 1].amplitude_variation = float(amplitude_variation)
 
     def upper_limit_changed(self, upper_limit: str):
         index = self.parameter_number_selected_spinbox.value()

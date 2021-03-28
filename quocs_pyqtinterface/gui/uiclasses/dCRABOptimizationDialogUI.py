@@ -1,21 +1,5 @@
 # -*- coding: utf-8 -*-
 
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#  Copyright 2021-  QuOCS Team
-#
-#  Licensed under the Apache License, Version 2.0 (the "License");
-#  you may not use this file except in compliance with the License.
-#  You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#  See the License for the specific language governing permissions and
-#  limitations under the License.
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 # Form implementation generated from reading ui file '/home/mrossign/QuOCS/QuOCS-pyqtinterface/quocs_pyqtinterface/gui/uifiles/dCRABOptimizationDialog.ui'
 #
 # Created by: PyQt5 UI code generator 5.15.2
@@ -30,10 +14,11 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Dialog(object):
     def setupUi(self, Dialog):
         Dialog.setObjectName("Dialog")
-        Dialog.resize(1233, 939)
+        Dialog.resize(1269, 646)
         self.verticalLayout = QtWidgets.QVBoxLayout(Dialog)
         self.verticalLayout.setObjectName("verticalLayout")
         self.horizontalLayout_2 = QtWidgets.QHBoxLayout()
+        self.horizontalLayout_2.setSizeConstraint(QtWidgets.QLayout.SetNoConstraint)
         self.horizontalLayout_2.setObjectName("horizontalLayout_2")
         self.label_5 = QtWidgets.QLabel(Dialog)
         self.label_5.setObjectName("label_5")
@@ -45,6 +30,11 @@ class Ui_Dialog(object):
         self.horizontalLayout_2.addItem(spacerItem)
         self.verticalLayout.addLayout(self.horizontalLayout_2)
         self.general_dcrab_tab = QtWidgets.QTabWidget(Dialog)
+        sizePolicy = QtWidgets.QSizePolicy(QtWidgets.QSizePolicy.Preferred, QtWidgets.QSizePolicy.Preferred)
+        sizePolicy.setHorizontalStretch(0)
+        sizePolicy.setVerticalStretch(0)
+        sizePolicy.setHeightForWidth(self.general_dcrab_tab.sizePolicy().hasHeightForWidth())
+        self.general_dcrab_tab.setSizePolicy(sizePolicy)
         self.general_dcrab_tab.setObjectName("general_dcrab_tab")
         self.verticalLayout.addWidget(self.general_dcrab_tab)
         self.horizontalLayout_15 = QtWidgets.QHBoxLayout()

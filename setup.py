@@ -21,8 +21,8 @@ requirements = [
     "QtPy==1.9.0",
     "PyQt5==5.15.2",
     "pyqt5-tools==5.15.2.3.0.2",
-    "numpy>=1.20.1",
-    "scipy>=1.6.1",
+    "numpy>=1.19.2",
+    "scipy>=1.5.4",
     "pyqtgraph>=0.11.1",
     "PySide2>=5.15.2"
 ]

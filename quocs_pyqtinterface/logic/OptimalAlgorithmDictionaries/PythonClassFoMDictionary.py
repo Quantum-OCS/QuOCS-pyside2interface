@@ -22,8 +22,8 @@ class PythonClassFomDictionary(SettingsDictionary):
     def __init__(self, loaded_dictionary=None):
         # Default values
         self.program_type = "TestClass"
-        self.python_module = "OptimalControlProblems.OneQubitClass"
-        self.python_class = "OneQubit"
+        self.python_module = ""
+        self.python_class = ""
         self.further_args = {}
 
         # Other variables

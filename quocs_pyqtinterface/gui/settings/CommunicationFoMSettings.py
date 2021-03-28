@@ -25,8 +25,9 @@ from quocs_pyqtinterface.gui.uiclasses.CommFomSettingsUI import Ui_Form
 
 class CommFom(QtWidgets.QWidget, Ui_Form):
     """Widget for Communication and Figure of merit evaluation"""
-    def __init__(self, parent=None, loaded_dictionary=None):
+    def __init__(self, parent=None, loaded_dictionary=None, plugin_name=None):
         super().__init__(parent)
+        # TODO Thinks here what is the best behaviour with buttons in the case of a new fom mode
         self.setupUi(self)
         # Communication QButtonGroup
         self.comm_button_group = QtWidgets.QButtonGroup()

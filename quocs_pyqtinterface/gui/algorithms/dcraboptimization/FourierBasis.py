@@ -29,6 +29,7 @@ class FourierBasis(QtWidgets.QWidget, Ui_Form):
         self.basis_dictionary = FourierBasisDictionary(loaded_dictionary)
         # uniform distribution
         self.uniform_distribution_form = UniformDistribution(loaded_dictionary=loaded_dictionary["random_frequencies_distribution"])
+
         # Connection
         self.basis_vector_number_spinbox.valueChanged.connect(self.set_basis_vector_number)
         # Initialization
@@ -36,6 +37,7 @@ class FourierBasis(QtWidgets.QWidget, Ui_Form):
 
     def _initialize_settings(self):
         self.frequency_setting_area.setWidget(self.uniform_distribution_form)
+        self.frequency_setting_area.setWidgetResizable(True)
         self.basis_vector_number_spinbox.setValue(self.basis_dictionary.basis_vector_number)
         frequency_distribution_list = ["Uniform"]
         for distribution in frequency_distribution_list:

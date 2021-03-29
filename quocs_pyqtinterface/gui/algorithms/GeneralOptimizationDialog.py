@@ -39,7 +39,6 @@ class GeneralOptimizationDialog(QtWidgets.QDialog):
     def __init__(self, load_full_dictionary_signal=None, plugin_name: str = None, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.load_full_dictionary_signal = load_full_dictionary_signal
-        self.general_optimization_tab.currentChanged.connect(self.set_curr_tab_index)
         self.curr_tab_index = -1
         self.plugin_name = plugin_name
 

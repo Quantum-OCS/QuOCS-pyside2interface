@@ -43,8 +43,8 @@ class dCRABSettingsDialog(GeneralOptimizationDialog, Ui_Dialog):
         ######################################################
         # Tabs Initialization
         ######################################################
-        # Get the reference to the general optimization tab
-        self.general_optimization_tab = self.general_optimization_tab
+        # Get the reference for the general optimization tab
+        self.general_optimization_tab = self.general_dcrab_tab
         # dCRAB Settings
         self.general_optimization_tab.addTab(dCRABSettings(loaded_dictionary=dcrab_settings), "dCRAB Settings")
         # Direct Search Method Settings
@@ -54,6 +54,7 @@ class dCRABSettingsDialog(GeneralOptimizationDialog, Ui_Dialog):
         # Communication and FoM evaluation
         self.set_communication_fom(comm_fom_settings)
         # Connection
+        self.general_optimization_tab.currentChanged.connect(self.set_curr_tab_index)
         self.save_button.clicked.connect(self.save_opti_dictionary)
         self.load_button.clicked.connect(self.load_opti_dictionary)
         # Initialization

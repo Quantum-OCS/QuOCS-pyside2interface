@@ -19,8 +19,8 @@ from setuptools import setup, find_packages
 requirements = [
     "setuptools>=44.0.0",
     "QtPy<=1.9.0",
-    "PyQt5<=5.15.2",
-    "pyqt5-tools<=5.15.2",
+    "PyQt5<=5.15.3",
+    "pyqt5-tools<=5.15.3",
     "numpy>=1.19.2",
     "scipy>=1.5.4",
     "pyqtgraph>=0.11.1",

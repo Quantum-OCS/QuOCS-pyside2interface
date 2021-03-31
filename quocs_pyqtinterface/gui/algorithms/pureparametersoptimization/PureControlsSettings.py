@@ -114,9 +114,14 @@ class PureControlsSettings(QtWidgets.QWidget, Ui_Form):
     def apply_all_parameters_clicked(self):
         # Get the dictionary of the current parameter
         index = self.parameter_number_selected_spinbox.value()
-        parameter_dictionary = self.parameters_obj_list[index - 1].get_dictionary()
+        # Copy the dictionary content
+        parameter_dictionary = self.parameters_obj_list[index - 1].get_dictionary().copy()
+        # Exclude the parameter name
+        parameter_dictionary.pop("parameter_name")
+        # Copy only the element in the dictionary
         for parameter in self.parameters_obj_list:
-            parameter.__dict__ = parameter_dictionary
+            for element in parameter_dictionary:
+                parameter.__dict__[element] = parameter_dictionary[element]
 
     def remove_parameter(self):
         # Check: not remove when only 1 parameter exists

@@ -14,15 +14,18 @@
 #  limitations under the License.
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-from setuptools import setup, find_packages
+from quocs_pyside2interface.logic.OptimalAlgorithmDictionaries.SettingsDictionary import SettingsDictionary
+import os
 
-requirements = [
-    "setuptools",
-    "QtPy",
-    "numpy",
-    "scipy",
-    "pyqtgraph",
-    "PySide2"
-]
 
-setup(name="quocs_pyside2interface", packages=find_packages(), version="dev", install_requires=requirements)
+class AllInOneCommunicationDictionary(SettingsDictionary):
+
+    def __init__(self, loaded_dictionary=None):
+        # Default values
+        self.communication_type = "AllInOneCommunication"
+        self.results_folder = os.path.join(os.getcwd(), "QuOCS_Results")
+
+        super().__init__(loaded_dictionary)
+
+    def get_dictionary(self):
+        return self.__dict__

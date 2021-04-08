@@ -14,15 +14,16 @@
 #  limitations under the License.
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-from setuptools import setup, find_packages
+from quocs_pyside2interface.logic.OptimalAlgorithmDictionaries.SettingsDictionary import SettingsDictionary
 
-requirements = [
-    "setuptools",
-    "QtPy",
-    "numpy",
-    "scipy",
-    "pyqtgraph",
-    "PySide2"
-]
 
-setup(name="quocs_pyside2interface", packages=find_packages(), version="dev", install_requires=requirements)
+class ListFunctionDictionary(SettingsDictionary):
+
+    def __init__(self, loaded_dictionary=None):
+        # Default values
+        self.list_function = [0.0 for i in range(10)]
+        self.function_type = "list_function"
+        super().__init__(loaded_dictionary)
+
+    def get_dictionary(self):
+        return self.__dict__

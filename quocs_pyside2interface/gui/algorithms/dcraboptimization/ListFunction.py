@@ -14,15 +14,16 @@
 #  limitations under the License.
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-from setuptools import setup, find_packages
+from qtpy import QtWidgets
 
-requirements = [
-    "setuptools",
-    "QtPy",
-    "numpy",
-    "scipy",
-    "pyqtgraph",
-    "PySide2"
-]
+from quocs_pyside2interface.gui.uiclasses.ListFunctionUI import Ui_Form
 
-setup(name="quocs_pyside2interface", packages=find_packages(), version="dev", install_requires=requirements)
+
+class ListFunction(QtWidgets.QWidget, Ui_Form):
+    def __init__(self):
+        super().__init__()
+        self.setupUi(self)
+        # TODO Finish this class
+
+    def get_dictionary(self):
+        pass

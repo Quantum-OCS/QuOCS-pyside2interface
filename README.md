@@ -7,7 +7,7 @@ python3 -m venv ../quocs_pyside2interface-venv
 ```
 Activate your virtual environment:
 ```bash
-source ../quocs_pyqtinterface-venv/bin/activate
+source ../pyside2interface-venv/bin/activate
 ```
 Install basic packages
 ```bash

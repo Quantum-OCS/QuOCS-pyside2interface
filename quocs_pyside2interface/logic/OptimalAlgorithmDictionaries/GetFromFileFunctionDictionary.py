@@ -14,15 +14,5 @@
 #  limitations under the License.
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-from setuptools import setup, find_packages
+from quocs_pyside2interface.logic.OptimalAlgorithmDictionaries.SettingsDictionary import SettingsDictionary
 
-requirements = [
-    "setuptools",
-    "QtPy",
-    "numpy",
-    "scipy",
-    "pyqtgraph",
-    "PySide2"
-]
-
-setup(name="quocs_pyside2interface", packages=find_packages(), version="dev", install_requires=requirements)

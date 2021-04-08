@@ -19,6 +19,17 @@ Install quocs_pyqtinterface in your virtual environment
 python -m pip install -e .
 ```
 
+## QtDesigner
+In the Linux OS you can installe the designer with
+```bash
+sudo apt install qttools5-dev-tools
+```
+and run the designer
+```bash
+designer
+```
+Then the convertuipy.py script will convert all the ui files in the uifiles folder in the respective python classes
+
 ## Tests
 Now you are able to use the tests scripts in the tests folder
 :)

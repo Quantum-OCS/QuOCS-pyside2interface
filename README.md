@@ -1,13 +1,13 @@
-# QuOCS-pyqtinterface
-A PyQt interface for QuOCS
+# QuOCS-pyside2interface
+A PySide2 interface for QuOCS
 ## Create a virtual environment
 Create a virtual environment:
 ```bash
-python3 -m venv ../quocs_pyqtinterface
+python3 -m venv ../quocs_pyside2interface-venv
 ```
 Activate your virtual environment:
 ```bash
-source ../quocs_pyqtinterface/bin/activate
+source ../quocs_pyqtinterface-venv/bin/activate
 ```
 Install basic packages
 ```bash

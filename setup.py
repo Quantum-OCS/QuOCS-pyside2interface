@@ -25,4 +25,4 @@ requirements = [
     "PySide2"
 ]
 
-setup(name="quocs_pyside2interface", packages=find_packages(), version="dev", install_requires=requirements)
+setup(name="quocs_pyside2interface", packages=find_packages(), version="0.0.1", install_requires=requirements)

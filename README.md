@@ -20,7 +20,7 @@ python -m pip install -e .
 ```
 
 ## QtDesigner
-In the Linux OS you can installe the designer with
+In the Linux OS you can install the qt designer with
 ```bash
 sudo apt install qttools5-dev-tools
 ```

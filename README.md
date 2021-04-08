@@ -14,7 +14,7 @@ Install basic packages
 python -m pip install --upgrade pip setuptools wheel
 ```
 ## Installation
-Install quocs_pyqtinterface in your virtual environment
+Install quocs_pyside2interface in your virtual environment
 ```bash
 python -m pip install -e .
 ```

@@ -1,7 +1,0 @@
-README.md
-setup.py
-quocs_pyqtinterface.egg-info/PKG-INFO
-quocs_pyqtinterface.egg-info/SOURCES.txt
-quocs_pyqtinterface.egg-info/dependency_links.txt
-quocs_pyqtinterface.egg-info/requires.txt
-quocs_pyqtinterface.egg-info/top_level.txt

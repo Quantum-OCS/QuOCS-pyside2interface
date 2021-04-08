@@ -1,6 +1,0 @@
-PySide2
-QtPy
-numpy
-pyqtgraph
-scipy
-setuptools

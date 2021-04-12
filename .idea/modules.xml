@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/QuOCS-pyqtinterface.iml" filepath="$PROJECT_DIR$/.idea/QuOCS-pyqtinterface.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../QuOCS-pyside2interface/.idea/QuOCS-pyside2interface.iml" filepath="$PROJECT_DIR$/../QuOCS-pyside2interface/.idea/QuOCS-pyside2interface.iml" />
     </modules>
   </component>
 </project>

@@ -14,14 +14,5 @@
 #  limitations under the License.
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-from setuptools import setup, find_packages
-
-requirements = [
-    "QtPy",
-    "numpy",
-    "scipy",
-    "pyqtgraph",
-    "PySide2"
-]
-
-setup(name="quocspyside2interface", packages=find_packages(), version="0.0.1", install_requires=requirements)
+from setuptools import setup
+setup()

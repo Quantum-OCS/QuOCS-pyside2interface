@@ -14,14 +14,17 @@
 #  limitations under the License.
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-from setuptools import setup, find_packages
+from quocspyside2interface.logic.OptimalAlgorithmDictionaries.SettingsDictionary import SettingsDictionary
 
-requirements = [
-    "QtPy",
-    "numpy",
-    "scipy",
-    "pyqtgraph",
-    "PySide2"
-]
 
-setup(name="quocspyside2interface", packages=find_packages(), version="0.0.1", install_requires=requirements)
+class TimeDictionary(SettingsDictionary):
+
+    def __init__(self, loaded_dictionary=None):
+        # Default values
+        self.time_name = "time"
+        self.initial_value = 1.0
+
+        super().__init__(loaded_dictionary)
+
+    def get_dictionary(self):
+        return self.__dict__

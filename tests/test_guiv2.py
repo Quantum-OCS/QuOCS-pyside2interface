@@ -19,8 +19,8 @@ from qtpy import QtWidgets
 from qtpy import QtCore
 import numpy as np
 
-from quocs_pyside2interface.gui.OptimizationBasicGui import OptimizationBasicGui
-from quocs_pyside2interface.logic.OptimizationBasic import OptimizationBasic
+from quocspyside2interface.gui.OptimizationBasicGui import OptimizationBasicGui
+from quocspyside2interface.logic.OptimizationBasic import OptimizationBasic
 import time
 
 

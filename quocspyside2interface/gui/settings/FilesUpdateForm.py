@@ -14,14 +14,19 @@
 #  limitations under the License.
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-from setuptools import setup, find_packages
+from qtpy import QtWidgets
 
-requirements = [
-    "QtPy",
-    "numpy",
-    "scipy",
-    "pyqtgraph",
-    "PySide2"
-]
+from quocspyside2interface.gui.uiclasses.FilesUpdateUI import Ui_Form
 
-setup(name="quocspyside2interface", packages=find_packages(), version="0.0.1", install_requires=requirements)
+
+class FilesUpdateForm(QtWidgets.QWidget, Ui_Form):
+    """Widget for the Files Update Communication"""
+    def __init__(self, parent=None):
+        super().__init__(parent)
+        self.setupUi(self)
+        # Button connection
+        self.get_update_folder_button.clicked.connect(self.get_update_folder)
+
+    def get_update_folder(self):
+        # TODO get the results folder
+        pass

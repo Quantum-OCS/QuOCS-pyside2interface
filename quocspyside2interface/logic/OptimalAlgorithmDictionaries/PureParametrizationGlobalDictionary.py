@@ -23,7 +23,7 @@ class PureParametrizationGlobalDictionary(SettingsDictionary):
         # Default values
         self.optimization_client_name = "PureParametrizationOptimization_Test"
         self.opti_algorithm_name = "DirectSearchMethod"
-        self.opti_algorithm_module = "quocs_optlib.optimalalgorithms.DirectSearchAlgorithm"
+        self.opti_algorithm_module = "quocslib.optimalalgorithms.DirectSearchAlgorithm"
         self.opti_algorithm_class = "DirectSearchAlgorithm"
         self.algorithm_settings = {}
         self.dsm_settings = {}

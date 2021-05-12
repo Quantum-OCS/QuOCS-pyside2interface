@@ -32,6 +32,8 @@ class SigmoidBasis(QtWidgets.QWidget, Ui_Form):
 
         # Connection
         self.basis_vector_number_spinbox.valueChanged.connect(self.set_basis_vector_number)
+        self.sigma_doubleSpinBox.valueChanged.connect(self.set_sigma)
+        self.offset_doubleSpinBox.valueChanged.connect(self.set_offset)
         # Initialization
         self._initialize_settings()
 
@@ -44,11 +46,17 @@ class SigmoidBasis(QtWidgets.QWidget, Ui_Form):
             self.freq_distribution_combobox.addItem(distribution)
         distribution_type = self.frequency_setting_area.widget().distribution_dictionary.distribution_name
         self.freq_distribution_combobox.itemText(frequency_distribution_list.index(distribution_type))
-        self.basis_dictionary.offset = 0.1 # ADD TO GUI
-        self.basis_dictionary.sigma = 0.1 # ADD TO GUI
+        #self.basis_dictionary.offset = 0.1 # ADD TO GUI
+        #self.basis_dictionary.sigma = 0.1 # ADD TO GUI
 
     def set_basis_vector_number(self, basis_vector_number: int):
         self.basis_dictionary.basis_vector_number = basis_vector_number
+
+    def set_sigma(self, sigma: float):
+        self.basis_dictionary.sigma = sigma
+
+    def set_offset(self, offset: float):
+        self.basis_dictionary.offset = offset
 
     def get_dictionary(self):
         # Get the dictionary from the frequency distribution

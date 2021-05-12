@@ -54,9 +54,14 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         self.lambda_scaling_function_radio_button.setChecked(True)
 
         # Create the widget object
-        # Basis function
+        # Basis form objects
+        # TODO Take the list of available basis from a module or class
+        self.basis_name = self.pulse_dictionary.basis.setdefault("basis_name", "Fourier")
+        self.basis_list = ["Fourier", "Sigmoid"]
         self.fourier_basis_form = FourierBasis(loaded_dictionary=self.pulse_dictionary.basis)
         self.sigmoid_basis_form = SigmoidBasis(loaded_dictionary=self.pulse_dictionary.basis)
+        self.basis_obj = [self.fourier_basis_form, self.sigmoid_basis_form]
+        self.basis_funs = [self.set_fourier_basis_widget, self.set_sigmoid_basis_widget]
         # Initial Guess
         self.initial_guess_lambda_function_form = LambdaFunction(loaded_dictionary=self.pulse_dictionary.initial_guess)
         self.initial_guess_list_function_form = ListFunction()
@@ -92,7 +97,7 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         self.amplitude_variation_line_edit.textChanged.connect(self.set_amplitude_variation)
         self.bins_number_spinbox.valueChanged.connect(self.set_bins_number)
 
-        self.basis_combobox.currentTextChanged.connect(self.set_basis)
+        self.basis_combobox.currentIndexChanged.connect(self.set_basis)
 
         self.time_name_combobox.currentIndexChanged.connect(self.set_time_combobox)
 
@@ -102,6 +107,29 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         self.is_initialization = False
 
         self.times_value_list = []
+
+    def _initialize_settings(self):
+        # Set initial widgets
+        # Set basis accordingly to the basis name
+        self.basis_scroll_area.setWidget(self.basis_obj[self.basis_list.index(self.basis_name)])
+        self.initial_guess_scroll_area.setWidget(self.initial_guess_lambda_function_form)
+        self.scaling_function_scroll_area.setWidget(self.scaling_function_lambda_function_form)
+        self.initial_guess_scroll_area.setWidgetResizable(True)
+        self.basis_scroll_area.setWidgetResizable(True)
+        # Pulse Name
+        self.pulse_name_line_edit.setText(self.pulse_dictionary.pulse_name)
+        # Amplitude Limits
+        self.upper_limit_line_edit.setText(str(self.pulse_dictionary.upper_limit))
+        self.lower_limit_line_edit.setText(str(self.pulse_dictionary.lower_limit))
+        # Amplitude variation
+        self.amplitude_variation_line_edit.setText(str(self.pulse_dictionary.amplitude_variation))
+        # Time Settings
+        self.bins_number_spinbox.setValue(self.pulse_dictionary.bins_number)
+        # Basis
+        for basis in self.basis_list:
+            self.basis_combobox.addItem(basis)
+        basis_type = self.basis_scroll_area.widget().basis_dictionary.basis_name
+        self.basis_combobox.setCurrentIndex(self.basis_list.index(basis_type))
 
     def update_time_values(self, time_dict):
         # Clear the time
@@ -131,35 +159,8 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
                      "initial_guess": initial_guess_dict}
         return full_dict
 
-    def _initialize_settings(self):
-        # Set initial widgets
-        self.basis_scroll_area.setWidget(self.fourier_basis_form)
-        self.initial_guess_scroll_area.setWidget(self.initial_guess_lambda_function_form)
-        self.scaling_function_scroll_area.setWidget(self.scaling_function_lambda_function_form)
-        self.initial_guess_scroll_area.setWidgetResizable(True)
-        self.basis_scroll_area.setWidgetResizable(True)
-        # Pulse Name
-        self.pulse_name_line_edit.setText(self.pulse_dictionary.pulse_name)
-        # Amplitude Limits
-        self.upper_limit_line_edit.setText(str(self.pulse_dictionary.upper_limit))
-        self.lower_limit_line_edit.setText(str(self.pulse_dictionary.lower_limit))
-        # Amplitude variation
-        self.amplitude_variation_line_edit.setText(str(self.pulse_dictionary.amplitude_variation))
-        # Time Settings
-        self.bins_number_spinbox.setValue(self.pulse_dictionary.bins_number)
-        # Basis
-        # TODO Take the list of available basis from a module or class
-        self.basis_list = ["Fourier", "Sigmoid"]
-        self.basis_obj = [self.fourier_basis_form, self.sigmoid_basis_form]
-        self.basis_funs = [self.set_fourier_basis_widget, self.set_sigmoid_basis_widget]
-        for basis in self.basis_list:
-            self.basis_combobox.addItem(basis)
-        basis_type = self.basis_scroll_area.widget().basis_dictionary.basis_name
-        self.basis_combobox.itemText(self.basis_list.index(basis_type))
-
-    def set_basis(self, basis_name:str):
-        index = self.basis_list.index(basis_name)
-        self.basis_funs[index]()
+    def set_basis(self, basis_index:int):
+        self.basis_funs[basis_index]()
 
     def set_amplitude_variation(self, amplitude_variation):
         self.pulse_dictionary.amplitude_variation = float(amplitude_variation)

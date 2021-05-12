@@ -17,6 +17,7 @@
 from qtpy import QtWidgets, QtGui
 
 from quocspyside2interface.gui.algorithms.dcraboptimization.FourierBasis import FourierBasis
+from quocspyside2interface.gui.algorithms.dcraboptimization.SigmoidBasis import SigmoidBasis
 from quocspyside2interface.gui.settings.GetFromFileFunction import GetFromFileFunction
 from quocspyside2interface.gui.algorithms.dcraboptimization.LambdaFunction import LambdaFunction
 from quocspyside2interface.gui.algorithms.dcraboptimization.ListFunction import ListFunction
@@ -55,6 +56,7 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         # Create the widget object
         # Basis function
         self.fourier_basis_form = FourierBasis(loaded_dictionary=self.pulse_dictionary.basis)
+        self.sigmoid_basis_form = SigmoidBasis(loaded_dictionary=self.pulse_dictionary.basis)
         # Initial Guess
         self.initial_guess_lambda_function_form = LambdaFunction(loaded_dictionary=self.pulse_dictionary.initial_guess)
         self.initial_guess_list_function_form = ListFunction()
@@ -89,6 +91,8 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         self.lower_limit_line_edit.textChanged.connect(self.set_lower_limit)
         self.amplitude_variation_line_edit.textChanged.connect(self.set_amplitude_variation)
         self.bins_number_spinbox.valueChanged.connect(self.set_bins_number)
+
+        self.basis_combobox.currentTextChanged.connect(self.set_basis)
 
         self.time_name_combobox.currentIndexChanged.connect(self.set_time_combobox)
 
@@ -145,11 +149,17 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         self.bins_number_spinbox.setValue(self.pulse_dictionary.bins_number)
         # Basis
         # TODO Take the list of available basis from a module or class
-        basis_list = ["Fourier"]
-        for basis in basis_list:
+        self.basis_list = ["Fourier", "Sigmoid"]
+        self.basis_obj = [self.fourier_basis_form, self.sigmoid_basis_form]
+        self.basis_funs = [self.set_fourier_basis_widget, self.set_sigmoid_basis_widget]
+        for basis in self.basis_list:
             self.basis_combobox.addItem(basis)
         basis_type = self.basis_scroll_area.widget().basis_dictionary.basis_name
-        self.basis_combobox.itemText(basis_list.index(basis_type))
+        self.basis_combobox.itemText(self.basis_list.index(basis_type))
+
+    def set_basis(self, basis_name:str):
+        index = self.basis_list.index(basis_name)
+        self.basis_funs[index]()
 
     def set_amplitude_variation(self, amplitude_variation):
         self.pulse_dictionary.amplitude_variation = float(amplitude_variation)
@@ -174,6 +184,16 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         self.initial_guess_scroll_area.takeWidget()
         self.initial_guess_scroll_area.setWidget(self.initial_guess_lambda_function_form)
         self.initial_guess_lambda_function_form = self.initial_guess_scroll_area.widget()
+
+    def set_sigmoid_basis_widget(self):
+        self.basis_scroll_area.takeWidget()
+        self.basis_scroll_area.setWidget(self.sigmoid_basis_form)
+        self.sigmoid_basis_form = self.basis_scroll_area.widget()
+
+    def set_fourier_basis_widget(self):
+        self.basis_scroll_area.takeWidget()
+        self.basis_scroll_area.setWidget(self.fourier_basis_form)
+        self.fourier_basis_form = self.basis_scroll_area.widget()
 
     def set_scaling_function_lambda_function_widget(self):
         self.scaling_function_scroll_area.takeWidget()

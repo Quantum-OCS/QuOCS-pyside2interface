@@ -23,7 +23,7 @@ class FourierBasisDictionary(SettingsDictionary):
         # Default values
         self.basis_name = "Fourier"
         self.basis_class = "Fourier"
-        self.basis_module = "quocs_optlib.pulses.basis.Fourier"
+        self.basis_module = "quocslib.pulses.basis.Fourier"
         self.basis_vector_number = 2
         self.random_frequencies_distribution = {}
 

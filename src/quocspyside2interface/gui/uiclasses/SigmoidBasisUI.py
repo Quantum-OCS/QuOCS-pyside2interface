@@ -27,6 +27,40 @@ class Ui_Form(object):
         self.verticalLayout = QVBoxLayout(Form)
         self.verticalLayout.setObjectName(u"verticalLayout")
         self.verticalLayout.setSizeConstraint(QLayout.SetMinAndMaxSize)
+        self.horizontalLayout_2 = QHBoxLayout()
+        self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
+        self.label_3 = QLabel(Form)
+        self.label_3.setObjectName(u"label_3")
+
+        self.horizontalLayout_2.addWidget(self.label_3)
+
+        self.sigma_doubleSpinBox = QDoubleSpinBox(Form)
+        self.sigma_doubleSpinBox.setObjectName(u"sigma_doubleSpinBox")
+
+        self.horizontalLayout_2.addWidget(self.sigma_doubleSpinBox)
+
+        self.label_5 = QLabel(Form)
+        self.label_5.setObjectName(u"label_5")
+
+        self.horizontalLayout_2.addWidget(self.label_5)
+
+        self.offset_doubleSpinBox = QDoubleSpinBox(Form)
+        self.offset_doubleSpinBox.setObjectName(u"offset_doubleSpinBox")
+
+        self.horizontalLayout_2.addWidget(self.offset_doubleSpinBox)
+
+        self.horizontalSpacer_2 = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
+
+        self.horizontalLayout_2.addItem(self.horizontalSpacer_2)
+
+        self.label_4 = QLabel(Form)
+        self.label_4.setObjectName(u"label_4")
+
+        self.horizontalLayout_2.addWidget(self.label_4)
+
+
+        self.verticalLayout.addLayout(self.horizontalLayout_2)
+
         self.horizontalLayout = QHBoxLayout()
         self.horizontalLayout.setObjectName(u"horizontalLayout")
         self.label = QLabel(Form)
@@ -66,7 +100,7 @@ class Ui_Form(object):
         self.frequency_setting_area.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
-        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 881, 100))
+        self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 881, 68))
         self.frequency_setting_area.setWidget(self.scrollAreaWidgetContents)
 
         self.verticalLayout.addWidget(self.frequency_setting_area)
@@ -79,7 +113,10 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.label.setText(QCoreApplication.translate("Form", u"Number Basis vector", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"Random Frequencies distribution", None))
+        self.label_3.setText(QCoreApplication.translate("Form", u"Sigmoid width:", None))
+        self.label_5.setText(QCoreApplication.translate("Form", u"Initial/Final sigmoid offset:", None))
+        self.label_4.setText("")
+        self.label.setText(QCoreApplication.translate("Form", u"Number of basis vectors:", None))
+        self.label_2.setText(QCoreApplication.translate("Form", u"Random step distribution type:", None))
     # retranslateUi
 

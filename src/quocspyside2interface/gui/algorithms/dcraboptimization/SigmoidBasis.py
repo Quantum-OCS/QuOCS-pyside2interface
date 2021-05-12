@@ -26,7 +26,7 @@ class SigmoidBasis(QtWidgets.QWidget, Ui_Form):
         super().__init__()
         self.setupUi(self)
         # Dictionary
-        self.basis_dictionary = SigmoidBasisDictionary(loaded_dictionary)
+        self.basis_dictionary = SigmoidBasisDictionary(loaded_dictionary=loaded_dictionary)
         # uniform distribution
         self.uniform_distribution_form = UniformDistribution(loaded_dictionary=loaded_dictionary["random_frequencies_distribution"])
 
@@ -46,6 +46,8 @@ class SigmoidBasis(QtWidgets.QWidget, Ui_Form):
             self.freq_distribution_combobox.addItem(distribution)
         distribution_type = self.frequency_setting_area.widget().distribution_dictionary.distribution_name
         self.freq_distribution_combobox.itemText(frequency_distribution_list.index(distribution_type))
+        self.sigma_doubleSpinBox.setValue(self.basis_dictionary.sigma)
+        self.offset_doubleSpinBox.setValue(self.basis_dictionary.offset)
         #self.basis_dictionary.offset = 0.1 # ADD TO GUI
         #self.basis_dictionary.sigma = 0.1 # ADD TO GUI
 

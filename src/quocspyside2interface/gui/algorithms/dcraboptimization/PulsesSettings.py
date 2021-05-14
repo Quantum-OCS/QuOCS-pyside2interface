@@ -53,20 +53,25 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         self.lambda_initial_guess_radio_button.setChecked(True)
         self.lambda_scaling_function_radio_button.setChecked(True)
 
-        # Create the widget object
+        # Create the widget objects
         # Basis form objects
         # TODO Take the list of available basis from a module or class
         self.basis_name = self.pulse_dictionary.basis.setdefault("basis_name", "Fourier")
         self.basis_list = ["Fourier", "Sigmoid"]
-        self.fourier_basis_form = FourierBasis(loaded_dictionary=self.pulse_dictionary.basis)
-        self.sigmoid_basis_form = SigmoidBasis(loaded_dictionary=self.pulse_dictionary.basis)
+        basis_dict = self.pulse_dictionary.basis
+        self.fourier_basis_form = FourierBasis(
+            loaded_dictionary=self._load_dictionary(self.basis_name, "Fourier", basis_dict))
+        self.sigmoid_basis_form = SigmoidBasis(
+            loaded_dictionary=self._load_dictionary(self.basis_name, "Sigmoid", basis_dict))
         self.basis_obj = [self.fourier_basis_form, self.sigmoid_basis_form]
         self.basis_funs = [self.set_fourier_basis_widget, self.set_sigmoid_basis_widget]
         # Initial Guess
+        # TODO Think how to load the dictionary based fro different initial guess
         self.initial_guess_lambda_function_form = LambdaFunction(loaded_dictionary=self.pulse_dictionary.initial_guess)
         self.initial_guess_list_function_form = ListFunction()
         self.initial_guess_get_from_file_form = GetFromFileFunction()
         # Scaling Function
+        # TODO Think how to load the dictionary based fro different initial guess
         self.scaling_function_lambda_function_form = \
             LambdaFunction(loaded_dictionary=self.pulse_dictionary.scaling_function)
         self.scaling_function_list_function_form = ListFunction()
@@ -108,6 +113,12 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
 
         self.times_value_list = []
 
+    def _load_dictionary(self, arg1: str, arg2: str, dictionary: dict) -> dict:
+        if arg1 == arg2:
+            return dictionary
+        else:
+            return {}
+
     def _initialize_settings(self):
         # Set initial widgets
         # Set basis accordingly to the basis name
@@ -128,8 +139,7 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         # Basis
         for basis in self.basis_list:
             self.basis_combobox.addItem(basis)
-        basis_type = self.basis_scroll_area.widget().basis_dictionary.basis_name
-        self.basis_combobox.setCurrentIndex(self.basis_list.index(basis_type))
+        self.basis_combobox.setCurrentIndex(self.basis_list.index(self.basis_name))
 
     def update_time_values(self, time_dict):
         # Clear the time

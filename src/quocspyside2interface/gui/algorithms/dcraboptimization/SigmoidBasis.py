@@ -28,7 +28,8 @@ class SigmoidBasis(QtWidgets.QWidget, Ui_Form):
         # Dictionary
         self.basis_dictionary = SigmoidBasisDictionary(loaded_dictionary=loaded_dictionary)
         # uniform distribution
-        self.uniform_distribution_form = UniformDistribution(loaded_dictionary=loaded_dictionary["random_frequencies_distribution"])
+        self.uniform_distribution_form = UniformDistribution(
+            loaded_dictionary=loaded_dictionary.setdefault("random_frequencies_distribution", {}))
 
         # Connection
         self.basis_vector_number_spinbox.valueChanged.connect(self.set_basis_vector_number)

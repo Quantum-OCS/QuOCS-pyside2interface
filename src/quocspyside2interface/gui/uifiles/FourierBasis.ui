@@ -67,7 +67,7 @@
     </layout>
    </item>
    <item>
-    <widget class="QScrollArea" name="frequency_setting_area">
+    <widget class="QScrollArea" name="super_parameter_setting_area">
      <property name="sizePolicy">
       <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
        <horstretch>0</horstretch>

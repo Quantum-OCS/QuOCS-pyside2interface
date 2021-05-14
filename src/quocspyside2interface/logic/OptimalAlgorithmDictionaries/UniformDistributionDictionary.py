@@ -23,7 +23,7 @@ class UniformDistributionDictionary(SettingsDictionary):
         # Default values
         self.distribution_name = "Uniform"
         self.distribution_class = "Uniform"
-        self.distribution_module = "quocslib.pulses.frequency.Uniform"
+        self.distribution_module = "quocslib.pulses.super_parameter.Uniform"
         self.lower_limit = 0.1
         self.upper_limit = 3.0
 

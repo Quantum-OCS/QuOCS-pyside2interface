@@ -25,7 +25,7 @@ class FourierBasisDictionary(SettingsDictionary):
         self.basis_class = "Fourier"
         self.basis_module = "quocslib.pulses.basis.Fourier"
         self.basis_vector_number = 2
-        self.random_frequencies_distribution = {}
+        self.random_super_parameter_distribution = {}
 
         super().__init__(loaded_dictionary)
 

@@ -7,7 +7,7 @@
   "basis":{
     "basis_name": "Fourier",
     "basis_vector_number": 2,
-    "random_frequencies_distribution": {
+    "random_super_parameter_distribution": {
       "distribution_name": "Uniform",
       "lower_limit": 0.1,
       "upper_limit": 5.0

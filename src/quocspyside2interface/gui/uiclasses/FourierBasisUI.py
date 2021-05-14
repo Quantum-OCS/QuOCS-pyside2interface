@@ -56,20 +56,20 @@ class Ui_Form(object):
 
         self.verticalLayout.addLayout(self.horizontalLayout)
 
-        self.frequency_setting_area = QScrollArea(Form)
-        self.frequency_setting_area.setObjectName(u"frequency_setting_area")
+        self.super_parameter_setting_area = QScrollArea(Form)
+        self.super_parameter_setting_area.setObjectName(u"super_parameter_setting_area")
         sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy1.setHorizontalStretch(0)
         sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.frequency_setting_area.sizePolicy().hasHeightForWidth())
-        self.frequency_setting_area.setSizePolicy(sizePolicy1)
-        self.frequency_setting_area.setWidgetResizable(True)
+        sizePolicy1.setHeightForWidth(self.super_parameter_setting_area.sizePolicy().hasHeightForWidth())
+        self.super_parameter_setting_area.setSizePolicy(sizePolicy1)
+        self.super_parameter_setting_area.setWidgetResizable(True)
         self.scrollAreaWidgetContents = QWidget()
         self.scrollAreaWidgetContents.setObjectName(u"scrollAreaWidgetContents")
         self.scrollAreaWidgetContents.setGeometry(QRect(0, 0, 881, 100))
-        self.frequency_setting_area.setWidget(self.scrollAreaWidgetContents)
+        self.super_parameter_setting_area.setWidget(self.scrollAreaWidgetContents)
 
-        self.verticalLayout.addWidget(self.frequency_setting_area)
+        self.verticalLayout.addWidget(self.super_parameter_setting_area)
 
 
         self.retranslateUi(Form)

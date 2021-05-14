@@ -27,13 +27,13 @@ class PulseDictionary(SettingsDictionary):
         self.bins_number = 101
         self.time_name = "Time"
         self.amplitude_variation = 0.1
-        self.basis = {"random_frequencies_distribution":{}}
+        self.basis = {"random_super_parameter_distribution":{}}
         # self.basis = {
         #     "basis_name": "Fourier",
         #     "basis_vector_number": 2,
-        #     "random_frequencies_distribution": {
+        #     "random_super_parameter_distribution": {
         #         "distribution_class": "Uniform",
-        #         "distribution_module": "quocslib.pulses.frequency.Uniform",
+        #         "distribution_module": "quocslib.pulses.super_parameter.Uniform",
         #         "distribution_name": "Uniform",
         #         "lower_limit": 0.1,
         #         "upper_limit": 5.0

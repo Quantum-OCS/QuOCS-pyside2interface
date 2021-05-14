@@ -25,7 +25,7 @@ class SigmoidBasisDictionary(SettingsDictionary):
         self.basis_class = "Sigmoid"
         self.basis_module = "quocslib.pulses.basis.Sigmoid"
         self.basis_vector_number = 2
-        self.random_frequencies_distribution = {}
+        self.random_super_parameter_distribution = {}
         self.offset = 0.1
         self.sigma = 0.1
 

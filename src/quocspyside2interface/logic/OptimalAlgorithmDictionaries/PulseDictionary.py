@@ -33,7 +33,7 @@ class PulseDictionary(SettingsDictionary):
         #     "basis_vector_number": 2,
         #     "random_frequencies_distribution": {
         #         "distribution_class": "Uniform",
-        #         "distribution_module": "quocs_optlib.pulses.frequency.Uniform",
+        #         "distribution_module": "quocslib.pulses.frequency.Uniform",
         #         "distribution_name": "Uniform",
         #         "lower_limit": 0.1,
         #         "upper_limit": 5.0

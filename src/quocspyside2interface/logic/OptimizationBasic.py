@@ -31,7 +31,7 @@ from abc import abstractmethod
 from qtpy import QtCore
 
 from quocspyside2interface.logic.HandleExitBasic import HandleExitBasic as HE
-# TODO !!! Put the dependency of the quocs_optlib here !!!
+# TODO !!! Put the dependency of the quocslib here !!!
 
 
 class OptimizationBasic:

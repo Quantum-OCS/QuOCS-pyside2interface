@@ -23,12 +23,12 @@ from quocspyside2interface.gui.uiclasses.UniformDistributionUI import Ui_Form
 
 
 class UniformDistribution(QtWidgets.QWidget, Ui_Form):
-    def __init__(self, loaded_dictionary):
+    def __init__(self, loaded_dictionary: dict = None):
         super().__init__()
         self.setupUi(self)
 
         # Dictionary fro the uniform distribution
-        self.distribution_dictionary = UniformDistributionDictionary(loaded_dictionary)
+        self.distribution_dictionary = UniformDistributionDictionary(loaded_dictionary=loaded_dictionary)
 
         # Set the validators for all the edit_line in the gui
         self.lower_limit_validator = QtGui.QDoubleValidator()

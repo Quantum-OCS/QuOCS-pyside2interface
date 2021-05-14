@@ -44,10 +44,10 @@ class UniformDistribution(QtWidgets.QWidget, Ui_Form):
         self._initialize_settings()
 
     def set_lower_limit(self, lower_limit: float):
-        self.distribution_dictionary.lower_limit = lower_limit
+        self.distribution_dictionary.lower_limit = float(lower_limit)
 
     def set_upper_limit(self, upper_limit: float):
-        self.distribution_dictionary.upper_limit = upper_limit
+        self.distribution_dictionary.upper_limit = float(upper_limit)
 
     def _initialize_settings(self):
         self.lower_limit_line_edit.setText(str(self.distribution_dictionary.lower_limit))

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'FourierBasis.ui'
+## Form generated from reading UI file 'ChebyshevBasis.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -44,10 +44,10 @@ class Ui_Form(object):
 
         self.horizontalLayout.addWidget(self.label_2)
 
-        self.freq_distribution_combobox = QComboBox(Form)
-        self.freq_distribution_combobox.setObjectName(u"freq_distribution_combobox")
+        self.order_distribution_combobox = QComboBox(Form)
+        self.order_distribution_combobox.setObjectName(u"order_distribution_combobox")
 
-        self.horizontalLayout.addWidget(self.freq_distribution_combobox)
+        self.horizontalLayout.addWidget(self.order_distribution_combobox)
 
         self.horizontalSpacer = QSpacerItem(40, 20, QSizePolicy.Expanding, QSizePolicy.Minimum)
 
@@ -80,6 +80,6 @@ class Ui_Form(object):
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
         self.label.setText(QCoreApplication.translate("Form", u"Number of basis vectors: ", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"  with random frequency distribution: ", None))
+        self.label_2.setText(QCoreApplication.translate("Form", u"  with random polynomial order distribution: ", None))
     # retranslateUi
 

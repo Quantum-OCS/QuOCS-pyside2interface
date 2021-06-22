@@ -44,12 +44,12 @@
      <item>
       <widget class="QLabel" name="label_2">
        <property name="text">
-        <string>  with random frequency distribution: </string>
+        <string>  with random polynomial order distribution: </string>
        </property>
       </widget>
      </item>
      <item>
-      <widget class="QComboBox" name="freq_distribution_combobox"/>
+      <widget class="QComboBox" name="order_distribution_combobox"/>
      </item>
      <item>
       <spacer name="horizontalSpacer">

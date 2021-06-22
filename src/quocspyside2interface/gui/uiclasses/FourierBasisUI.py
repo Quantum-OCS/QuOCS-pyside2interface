@@ -79,7 +79,7 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
-        self.label.setText(QCoreApplication.translate("Form", u"Number of basis vectors: ", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"  with random frequency distribution: ", None))
+        self.label.setText(QCoreApplication.translate("Form", u"Number Basis vector", None))
+        self.label_2.setText(QCoreApplication.translate("Form", u"Random Frequencies distribution", None))
     # retranslateUi
 

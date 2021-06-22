@@ -18,7 +18,6 @@ from qtpy import QtWidgets, QtGui
 
 from quocspyside2interface.gui.algorithms.dcraboptimization.FourierBasis import FourierBasis
 from quocspyside2interface.gui.algorithms.dcraboptimization.SigmoidBasis import SigmoidBasis
-from quocspyside2interface.gui.algorithms.dcraboptimization.ChebyshevBasis import ChebyshevBasis
 from quocspyside2interface.gui.settings.GetFromFileFunction import GetFromFileFunction
 from quocspyside2interface.gui.algorithms.dcraboptimization.LambdaFunction import LambdaFunction
 from quocspyside2interface.gui.algorithms.dcraboptimization.ListFunction import ListFunction
@@ -56,18 +55,16 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
 
         # Create the widget objects
         # Basis form objects
-        # TODO Take the list of available bases from a module or class
+        # TODO Take the list of available basis from a module or class
         self.basis_name = self.pulse_dictionary.basis.setdefault("basis_name", "Fourier")
-        self.basis_list = ["Fourier", "Sigmoid", "Chebyshev"]
+        self.basis_list = ["Fourier", "Sigmoid"]
         basis_dict = self.pulse_dictionary.basis
         self.fourier_basis_form = FourierBasis(
             loaded_dictionary=self._load_dictionary(self.basis_name, "Fourier", basis_dict))
         self.sigmoid_basis_form = SigmoidBasis(
             loaded_dictionary=self._load_dictionary(self.basis_name, "Sigmoid", basis_dict))
-        self.chebyshev_basis_form = ChebyshevBasis(
-            loaded_dictionary=self._load_dictionary(self.basis_name, "Chebyshev", basis_dict))
-        self.basis_obj = [self.fourier_basis_form, self.sigmoid_basis_form, self.chebyshev_basis_form]
-        self.basis_funs = [self.set_fourier_basis_widget, self.set_sigmoid_basis_widget, self.set_chebyshev_basis_widget]
+        self.basis_obj = [self.fourier_basis_form, self.sigmoid_basis_form]
+        self.basis_funs = [self.set_fourier_basis_widget, self.set_sigmoid_basis_widget]
         # Initial Guess
         # TODO Think how to load the dictionary based fro different initial guess
         self.initial_guess_lambda_function_form = LambdaFunction(loaded_dictionary=self.pulse_dictionary.initial_guess)
@@ -199,20 +196,15 @@ class PulseSettings(QtWidgets.QWidget, Ui_Form):
         self.initial_guess_scroll_area.setWidget(self.initial_guess_lambda_function_form)
         self.initial_guess_lambda_function_form = self.initial_guess_scroll_area.widget()
 
-    def set_fourier_basis_widget(self):
-        self.basis_scroll_area.takeWidget()
-        self.basis_scroll_area.setWidget(self.fourier_basis_form)
-        self.fourier_basis_form = self.basis_scroll_area.widget()
-
     def set_sigmoid_basis_widget(self):
         self.basis_scroll_area.takeWidget()
         self.basis_scroll_area.setWidget(self.sigmoid_basis_form)
         self.sigmoid_basis_form = self.basis_scroll_area.widget()
 
-    def set_chebyshev_basis_widget(self):
+    def set_fourier_basis_widget(self):
         self.basis_scroll_area.takeWidget()
-        self.basis_scroll_area.setWidget(self.chebyshev_basis_form)
-        self.chebyshev_basis_form = self.basis_scroll_area.widget()
+        self.basis_scroll_area.setWidget(self.fourier_basis_form)
+        self.fourier_basis_form = self.basis_scroll_area.widget()
 
     def set_scaling_function_lambda_function_widget(self):
         self.scaling_function_scroll_area.takeWidget()

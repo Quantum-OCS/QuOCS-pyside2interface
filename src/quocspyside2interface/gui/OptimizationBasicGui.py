@@ -13,24 +13,13 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#
-#  Licensed under the Apache License, Version 2.0 (the "License");
-#  you may not use this file except in compliance with the License.
-#  You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#  See the License for the specific language governing permissions and
-#  limitations under the License.
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
+
 import os
 
 from qtpy import QtCore
 from qtpy import QtWidgets
 import pyqtgraph as pg
+import numpy as np
 
 from quocspyside2interface.gui.tools.DropOutPlotter import DropOutPlotter
 from quocspyside2interface.logic.utilities.readjson import readjson
@@ -88,6 +77,20 @@ class OptimizationBasicGui:
     fom_evaluation: list = []
     # Optimization - Communication dictionary
     opti_comm_dict: dict = {"version": "dev"}
+
+    #############################################
+    # Improve the speed on plotting data with OpenGL
+    #############################################
+    try:
+        import OpenGL
+        pg.setConfigOption('useOpenGL', True)
+        pg.setConfigOption('enableExperimental', True)
+        print("Pyopengl is activated, to improve rendering performance")
+    except Exception as e:
+        print(f"Enabling OpenGL failed with {e}. Will result in slow rendering. Try installing PyOpenGL.")
+
+    # The pen for figure of merit data
+    pen = pg.mkPen(color=(255, 0, 0))
 
     def handle_ui_elements(self):
         ###################################
@@ -278,16 +281,22 @@ class OptimizationBasicGui:
         # TODO Substitute scatter plot with fom plotter
         self.fom_evaluation.append(fom)
         self.iterations_number.append(iteration_number)
+        # Convert to numpy array to plot faster with pyqt
+        fom_evaluation = np.asarray(self.fom_evaluation, dtype="float")
+        iterations_number = np.asarray(self.iterations_number, dtype="float")
         for plotter_id in self.fom_plotter_dict:
             # If the first iteration create the line
             if len(self.fom_evaluation) == 1:
-                pen = pg.mkPen(color=(255, 0, 0))
                 # TODO annotate the fom_data type before the constructor
-                self.fom_data = self.fom_plotter_dict[plotter_id].plot(self.iterations_number, self.fom_evaluation,
+                pen = self.pen
+                # self.fom_data = self.fom_plotter_dict[plotter_id].plot(iterations_number, fom_evaluation,
+                #                                                        pen=pen, symbol='o')
+                # Plot the first graph
+                self.fom_data = self.fom_plotter_dict[plotter_id].plot(iterations_number, fom_evaluation,
                                                                        pen=pen, symbol='o')
             else:
                 # Set the data
-                self.fom_data.setData(self.iterations_number, self.fom_evaluation)
+                self.fom_data.setData(iterations_number, fom_evaluation)
 
     @QtCore.Slot(dict)
     def update_optimization_dictionary(self, opti_comm_dict):
@@ -302,7 +311,7 @@ class OptimizationBasicGui:
         self.label_messages("It is possible to start the optimization")
 
     def clear_fom_graph(self):
-        """Clean the data points and the list"""
+        """Clear the data points and the list"""
         for plotter_id in self.fom_plotter_dict:
             self.fom_plotter_dict[plotter_id].clear()
         self.fom_evaluation = []
@@ -310,22 +319,31 @@ class OptimizationBasicGui:
 
     def start_optimization(self):
         """Emit the start optimization signal"""
+        # Disable buttons and clear canvas
+        self.running_mode_buttons_p1()
+        # Send the optimization dictionary with the comm fom settings to the optimization logic interface
+        self.start_optimization_signal.emit(self.opti_comm_dict)
+        # Enable buttons
+        self.running_mode_buttons_p2()
+        
+    def running_mode_buttons_p1(self):
         # Disable the start button
         self._mw.start_optimization_button.setEnabled(False)
         # Send the signal to the handle exit obj
-        self.stop_optimization_signal.emit(True)
+        # TODO check if it is really compulsory. An activation signal is already send in the logic part
+        # self.stop_optimization_signal.emit(True)
         # Remove the logo from the canvas
         if self.logo_item is not None:
             self._mw.fom_plotter.removeItem(self.logo_item)
-        # Start the optimization
+        # Clear the figure of merit graph
         self.clear_fom_graph()
-        # Send the optimization dictionary with the comm fom settings to the optimization logic interface
-        self.start_optimization_signal.emit(self.opti_comm_dict)
+    
+    def running_mode_buttons_p2(self):
         # Enable stop optimization button
         self._mw.stop_optimization_button.setEnabled(True)
 
     def stop_optimization(self):
-        """Stop the counter"""
+        """ Stop the optimization by the button"""
         # Disable the stop button
         self._mw.stop_optimization_button.setEnabled(False)
         # Send the signal to the handle exit obj
@@ -337,3 +355,8 @@ class OptimizationBasicGui:
     def label_messages(self, message):
         """Update the label with the message"""
         self._mw.main_operations_label.setText(message)
+        # Catch particular messages
+        if message == "start":
+            self.running_mode_buttons_p1()
+            self.running_mode_buttons_p2()
+            

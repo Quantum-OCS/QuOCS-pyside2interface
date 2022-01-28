@@ -15,11 +15,14 @@
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
 from qtpy import QtWidgets
+from qtpy import uic
+import os
 
-from quocspyside2interface.gui.uiclasses.DropOutPlotterUI import Ui_Dialog
+
+DropOutPlotterWidget = uic.loadUiType(os.path.join(os.path.dirname(__file__), "DropOutPlotter.ui"))[0]
 
 
-class DropOutPlotter(QtWidgets.QDialog, Ui_Dialog):
+class DropOutPlotter(QtWidgets.QDialog, DropOutPlotterWidget):
     """Drop out dialogue for the plotter"""
     def __init__(self, id_window, remove_window_signal, parent=None):
         super().__init__(parent)

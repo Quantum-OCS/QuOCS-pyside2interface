@@ -25,7 +25,9 @@ class HandleExitBasic(QtCore.QObject):
 
     logger = logging.getLogger("oc_logger")
 
-    is_user_running: bool
+    def __init__(self):
+        super().__init__()
+        self.is_user_running = True
 
     @QtCore.Slot(bool)
     def set_is_user_running(self, is_running: bool):

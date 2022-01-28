@@ -1,1 +1,0 @@
-Put in this directory the ui classes originated by the convert script in the gui folder.

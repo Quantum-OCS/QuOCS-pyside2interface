@@ -18,21 +18,29 @@ import os
 
 from qtpy import QtCore
 from qtpy import QtWidgets
+from qtpy import uic
 import pyqtgraph as pg
 import numpy as np
 
-from quocspyside2interface.gui.tools.DropOutPlotter import DropOutPlotter
 from quocspyside2interface.logic.utilities.readjson import readjson
-from quocspyside2interface.gui.algorithms.dcraboptimization.dCRABSettingsDialog import dCRABSettingsDialog
-from quocspyside2interface.gui.algorithms.pureparametersoptimization.DirectSearchSettingsDialog import \
-    DirectSearchSettingsDialog
-from quocspyside2interface.gui.uiclasses.MainWindowUI import Ui_MainWindow
+
+from quocspyside2interface.gui.tools.DropOutPlotter import DropOutPlotter
+from quocspyside2interface.gui.optimalalgorithms.dCRABSettingsDialog import dCRABSettingsDialog
+from quocspyside2interface.gui.optimalalgorithms.DirectSearchSettingsDialog import DirectSearchSettingsDialog
 
 
-class MainWindow(QtWidgets.QMainWindow, Ui_MainWindow):
-    def __init__(self):
-        super().__init__()
-        self.setupUi(self)
+class MainWindow(QtWidgets.QMainWindow):
+    """ Helper class for window loaded from UI file.
+    """
+    def __init__(self, parent=None):
+        """ Create the switch GUI window.
+        """
+        # Get the path to the *.ui file
+        this_dir = os.path.dirname(__file__)
+        ui_file = os.path.join(this_dir, "MainWindow.ui")
+        # Load it
+        super().__init__(parent=parent)
+        uic.loadUi(ui_file, self)
         self.show()
 
 
@@ -171,7 +179,6 @@ class OptimizationBasicGui:
             self.curr_pulse_plot_number += 1
             self.pulses_plotter_list[0]["pulse_index"] += 1
 
-
     def previous_plot_pulse(self):
         # [{"pulse_index": 0, "plotter": {"pyqt_obj": None, "data_obj": None}}]
         # TODO Put limits on pulse_index
@@ -189,12 +196,13 @@ class OptimizationBasicGui:
     def _get_pure_parameters_optimization_dialog(self):
         print("Try to open pure parametrization settings")
         pure_parameter_optimization_dialog = \
-            DirectSearchSettingsDialog(load_full_dictionary_signal=self.load_dictionary_signal)
+            DirectSearchSettingsDialog(load_full_dictionary_signal=self.load_dictionary_signal, parent=self._mw)
         pure_parameter_optimization_dialog.exec_()
 
     def _get_dcrab_optimization_dialog(self):
         print("Try to open dcrab optimization settings")
-        dcrab_optimization_dialog = dCRABSettingsDialog(load_full_dictionary_signal=self.load_dictionary_signal)
+        dcrab_optimization_dialog = \
+            dCRABSettingsDialog(load_full_dictionary_signal=self.load_dictionary_signal, parent=self._mw)
         dcrab_optimization_dialog.exec_()
 
     def _load_configuration_file(self):

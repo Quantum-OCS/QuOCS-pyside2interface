@@ -1,5 +1,3 @@
-
-
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 #  Copyright 2021-  QuOCS Team
 #
@@ -18,29 +16,25 @@
 
 from qtpy import QtWidgets
 from qtpy import uic
+
 import os
 
 
-DropOutSummaryWidget = uic.loadUiType(os.path.join(os.path.dirname(__file__), "DropOutSummary.ui"))[0]
+LocalCommunicationForm = uic.loadUiType(os.path.join(os.path.dirname(__file__), "LocalCommunication.ui"))[0]
 
 
-class DropOutSummary(QtWidgets.QDialog, DropOutSummaryWidget):
-    """Drop out dialogue for the summary"""
-    def __init__(self, close_signal, summary_list, parent=None):
-        # Load it
-        super().__init__(parent=parent)
+class LocalCommForm(QtWidgets.QWidget, LocalCommunicationForm):
+    """Widget for the Local communication"""
+    def __init__(self, parent=None):
+        super().__init__(parent)
         self.setupUi(self)
-        self.close_signal = close_signal
-        self.summary_edit_line.setReadOnly(True)
-        self.update_summary(summary_list)
+        self.get_shared_folder_button.clicked.connect(self.get_shared_folder)
+        self.get_results_folder_button.clicked.connect(self.get_results_folder)
 
-    def update_summary(self, summary_list):
-        self.summary_edit_line.setPlainText("")
-        for element in summary_list:
-            self.summary_edit_line.appendPlainText(element)
+    def get_results_folder(self):
+        # TODO get the results folder
+        pass
 
-    def closeEvent(self, event):
-        # Send a signal to the main window to delete the object
-        self.close_signal.emit()
-        # Close the window
-        event.accept()
+    def get_shared_folder(self):
+        # TODO get the shared folder
+        pass

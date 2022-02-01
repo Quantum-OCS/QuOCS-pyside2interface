@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "title": "Fourier Basis",
+    "properties": {
+        "floatAmplitude": {
+            "title": "Amplitude",
+            "type": "number"
+        },
+        "basisVectorNumber": {
+            "title": "Basis vector number",
+            "type": "integer"
+        }
+    }
+}

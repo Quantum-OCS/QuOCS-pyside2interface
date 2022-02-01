@@ -18,15 +18,17 @@ from quocspyside2interface.qt_schema.spindoubleschemawidget import SpinDoubleSch
 from quocspyside2interface.qt_schema.spinschemawidget import SpinSchemaWidget
 from quocspyside2interface.qt_schema.textareaschemawidget import TextAreaSchemaWidget
 from quocspyside2interface.qt_schema.textschemawidget import TextSchemaWidget
+from quocspyside2interface.qt_schema.scientificdoublespinboxschemawidget import ScientificSpinDoubleSchemaWidget
 
 
 class WidgetBuilder:
-    """ This class build all the widget defined in the json schema """
+    """ This class build all the widgets defined in the json schema """
     # Default mapping between the key in the json schema and the widget schema
     default_widget_map = {
         "boolean": {"checkbox": CheckboxSchemaWidget, "enum": EnumSchemaWidget},
         "object": {"object": ObjectSchemaWidget, "enum": EnumSchemaWidget},
-        "number": {"spin": SpinDoubleSchemaWidget, "text": TextSchemaWidget, "enum": EnumSchemaWidget},
+        "number": {"spin": SpinDoubleSchemaWidget, "text": TextSchemaWidget, "enum": EnumSchemaWidget,
+                   "scientific": ScientificSpinDoubleSchemaWidget},
         "string": {"textarea": TextAreaSchemaWidget, "text": TextSchemaWidget, "password": PasswordWidget,
                    "filepath": FilepathSchemaWidget, "colour": ColorSchemaWidget, "enum": EnumSchemaWidget},
         "integer": {"spin": SpinSchemaWidget, "text": TextSchemaWidget, "range": IntegerRangeSchemaWidget,
@@ -40,7 +42,7 @@ class WidgetBuilder:
         "array": "array",
         "number": "spin",
         "integer": "spin",
-        "string": "text",
+        "string": "text"
     }
     # I do not know what happens here
     widget_variant_modifiers = {

@@ -28,25 +28,25 @@ if __name__ == "__main__":
 
     schema = {
         "type": "object",
-        "title": "Fourier Basis test",
+        "title": "Slider test",
         "properties": {
-            "floatAmplitude": {
-                "title": "Amplitude",
-                "type": "number",
-                "minimum": 0.0,
-                "maximum": 10.0
+            "aSlider": {
+                "type": "integer",
+                "minimum": 5,
+                "maximum": 10,
+                "multipleOf": 1
             }
         }
     }
 
     ui_schema = {
-        "floatAmplitude": {
-            "ui:widget": "scientific"
+        "aSlider": {
+            "ui:widget": "range"
         }
     }
     form = builder.create_form(schema, ui_schema)
     form.widget.state = {
-        "floatAmplitude": 5.0
+        "aSlider": 6
     }
     form.show()
     form.widget.on_changed.connect(lambda d: print(dumps(d, indent=4)))

@@ -1,0 +1,15 @@
+{
+    "type": "object",
+    "title": "Fourier Basis",
+    "properties": {
+        "basisVectorNumber": {
+            "title": "Basis vector number",
+            "type": "integer"
+        },
+        "distributionArea": {
+            "title": "Distribution",
+            "type": "object",
+            "properties": {}
+        }
+    }
+}

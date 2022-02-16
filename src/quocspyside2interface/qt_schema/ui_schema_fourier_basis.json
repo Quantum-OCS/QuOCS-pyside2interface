@@ -1,8 +1,0 @@
-{
-    "floatAmplitude": {
-        "ui:widget": "scientific"
-    },
-    "basisVectorNumber": {
-        "ui:widget": "spin"
-    }
-}

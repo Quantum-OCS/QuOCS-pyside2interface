@@ -1,28 +1,13 @@
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-#  Copyright 2021-  QuOCS Team
-#
-#  Licensed under the Apache License, Version 2.0 (the "License");
-#  you may not use this file except in compliance with the License.
-#  You may obtain a copy of the License at
-#
-#      http://www.apache.org/licenses/LICENSE-2.0
-#
-#  Unless required by applicable law or agreed to in writing, software
-#  distributed under the License is distributed on an "AS IS" BASIS,
-#  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-#  See the License for the specific language governing permissions and
-#  limitations under the License.
-# ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
-
 from functools import wraps
 from typing import Iterator
 
 from qtpy import QtWidgets
+from quocspyside2interface.qt_schema_quocs.baseform import BaseForm
 
 
 class StateProperty(property):
 
-    def setter(self, fset):
+    def setter(self, fset: object) -> object:
         @wraps(fset)
         def _setter(*args):
             *head, value = args
@@ -57,3 +42,22 @@ def iter_layout_items(layout) -> Iterator[QtWidgets.QLayoutItem]:
 
 def iter_layout_widgets(layout: QtWidgets.QLayout) -> Iterator[QtWidgets.QWidget]:
     return (i.widget() for i in iter_layout_items(layout))
+
+
+def update_internal_widget(new_widget: QtWidgets.QWidget, old_widget: QtWidgets.QWidget) -> QtWidgets.QWidget:
+    """ Move the distribution widget inside the Fourier Basis widget"""
+    old_widget.takeWidget()
+    old_widget.setWidget(new_widget)
+    new_widget = old_widget
+    return new_widget
+
+
+def update_error_functions(schema_obj: BaseForm,
+                           validate_func: callable, error_func: callable, remove_error: callable):
+    """ """
+    # Disconnect the old validation and connect the signal to the new one
+    schema_obj.widget_schema.on_changed.disconnect()
+    schema_obj.widget_schema.on_changed.connect(validate_func)
+    # Update the external error functions
+    schema_obj.external_errors = error_func
+    schema_obj.remove_error = remove_error

@@ -1,7 +1,7 @@
 """ Put header here """
 from qtpy import QtWidgets
 
-from quocspyside2interface.qt_schema.schemawidgetmixing import SchemaWidgetMixin
+from quocspyside2interface.qt_schema_quocs.schemawidgetmixing import SchemaWidgetMixin
 from quocspyside2interface.qt_schema.utils import state_property
 from quocspyside2interface.qt_schema.scientificdoublespinboxwidget import ScientificDoubleSpinBox
 

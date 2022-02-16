@@ -6,7 +6,7 @@ from qtpy import QtWidgets
 from typing import List
 from typing import Tuple, Optional
 
-from quocspyside2interface.qt_schema.schemawidgetmixing import SchemaWidgetMixin
+from quocspyside2interface.qt_schema_quocs.schemawidgetmixing import SchemaWidgetMixin
 from quocspyside2interface.qt_schema.arraycontrolswidget import ArrayControlsWidget
 from quocspyside2interface.qt_schema.arrayrowwidget import ArrayRowWidget
 from quocspyside2interface.qt_schema.utils import iter_layout_widgets, state_property, is_concrete_schema

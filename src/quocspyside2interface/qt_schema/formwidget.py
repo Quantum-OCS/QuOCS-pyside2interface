@@ -3,17 +3,17 @@ from typing import List
 
 from qtpy import QtWidgets
 
-from quocspyside2interface.qt_schema.schemawidgetmixing import SchemaWidgetMixin
+from quocspyside2interface.qt_schema_quocs.schemawidgetmixing import SchemaWidgetMixin
 
 
 class FormWidget(QtWidgets.QWidget):
 
-    def __init__(self, widget_schema: SchemaWidgetMixin):
-        super().__init__()
+    def __init__(self, widget_schema: SchemaWidgetMixin, parent=None):
+        super().__init__(parent=parent)
         layout = QtWidgets.QVBoxLayout()
         self.setLayout(layout)
 
-        self.error_widget = QtWidgets.QGroupBox()
+        self.error_widget = QtWidgets.QGroupBox(parent=parent)
         self.error_widget.setTitle("Errors")
         self.error_layout = QtWidgets.QVBoxLayout()
         self.error_widget.setLayout(self.error_layout)

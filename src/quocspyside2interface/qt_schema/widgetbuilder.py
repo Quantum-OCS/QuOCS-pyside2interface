@@ -3,7 +3,7 @@ from copy import deepcopy
 
 from jsonschema.validators import validator_for
 
-from quocspyside2interface.qt_schema.schemawidgetmixing import SchemaWidgetMixin
+from quocspyside2interface.qt_schema_quocs.schemawidgetmixing import SchemaWidgetMixin
 from quocspyside2interface.qt_schema.arrayschemawidget import ArraySchemaWidget
 from quocspyside2interface.qt_schema.checkboxschemawidget import CheckboxSchemaWidget
 from quocspyside2interface.qt_schema.colorschemawidget import ColorSchemaWidget
@@ -55,7 +55,7 @@ class WidgetBuilder:
         # Save the validator
         self.validator_cls = validator_cls
 
-    def create_form(self, schema: dict, ui_schema: dict, state=None) -> SchemaWidgetMixin:
+    def create_form(self, schema: dict, ui_schema: dict, state=None) -> FormWidget:
         validator_cls = self.validator_cls
         if validator_cls is None:
             validator_cls = validator_for(schema)

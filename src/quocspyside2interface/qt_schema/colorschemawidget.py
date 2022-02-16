@@ -1,5 +1,5 @@
 """ Put header here """
-from quocspyside2interface.qt_schema.schemawidgetmixing import SchemaWidgetMixin
+from quocspyside2interface.qt_schema_quocs.schemawidgetmixing import SchemaWidgetMixin
 from quocspyside2interface.qt_schema.qcolorbutton import QColorButton
 from quocspyside2interface.qt_schema.utils import state_property
 

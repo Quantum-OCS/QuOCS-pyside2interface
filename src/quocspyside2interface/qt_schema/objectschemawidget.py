@@ -4,15 +4,14 @@ from typing import Tuple, Dict
 
 from qtpy import QtWidgets, QtCore
 
-from quocspyside2interface.qt_schema.schemawidgetmixing import SchemaWidgetMixin
-from quocspyside2interface.qt_schema.utils import state_property
+from quocspyside2interface.qt_schema_quocs.schemawidgetmixing import SchemaWidgetMixin
+from quocspyside2interface.qt_schema_quocs.utils import state_property
 
 
 class ObjectSchemaWidget(SchemaWidgetMixin, QtWidgets.QGroupBox):
 
-    def __init__(self, schema: dict, ui_schema: dict, widget_builder: object):
-        super().__init__(schema, ui_schema, widget_builder)
-
+    def __init__(self, schema: dict, ui_schema: dict, widget_builder: object, parent=None):
+        super().__init__(schema, ui_schema, widget_builder, parent=parent)
         self.widgets = self.populate_from_schema(schema, ui_schema, widget_builder)
 
     @property
@@ -39,8 +38,11 @@ class ObjectSchemaWidget(SchemaWidgetMixin, QtWidgets.QGroupBox):
         self.state[name] = value
         self.on_changed.emit(self.state)
 
-    def populate_from_schema(self, schema: dict, ui_schema: dict, widget_builder: object) -> Dict[str, QtWidgets.QWidget]:
-        layout = QtWidgets.QFormLayout()
+    def populate_from_schema(self,
+                             schema: dict,
+                             ui_schema: dict,
+                             widget_builder: object) -> Dict[str, QtWidgets.QWidget]:
+        layout = QtWidgets.QFormLayout(parent=self.widget)
         self.setLayout(layout)
         layout.setAlignment(QtCore.Qt.AlignTop)
         self.setFlat(False)
@@ -55,7 +57,6 @@ class ObjectSchemaWidget(SchemaWidgetMixin, QtWidgets.QGroupBox):
         widgets = {}
 
         # Loop over all the sub schema in the schema widget
-
         for name, sub_schema in schema['properties'].items():
             sub_ui_schema = ui_schema.get(name, {})
             widget = widget_builder.create_widget(sub_schema, sub_ui_schema)  # TODO onchanged

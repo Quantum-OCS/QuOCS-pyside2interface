@@ -5,11 +5,14 @@ from qtpy import QtWidgets
 from quocspyside2interface.logic.utilities.readjson import readjson
 from quocspyside2interface.qt_schema_quocs.baseform import BaseForm
 
-schema = readjson("uniform_distribution.json")[1]
+import os
+
+# json schema
+schema = readjson(os.path.join(os.path.dirname(__file__), "uniform_distribution.json"))[1]
 # ui schema
-ui_schema = readjson("ui_schema_uniform_distribution.json")[1]
+ui_schema = readjson(os.path.join(os.path.dirname(__file__), "ui_schema_uniform_distribution.json"))[1]
 # initial state
-state_schema = readjson("state_uniform_distribution.json")[1]
+state_schema = readjson(os.path.join(os.path.dirname(__file__), "state_uniform_distribution.json"))[1]
 
 
 class QError:
@@ -26,9 +29,12 @@ class UniformDistribution(QtWidgets.QWidget,
         super().__init__(parent=parent, *args, **kwargs)
         # Setup all the widgets
         self.setupUi(Form=parent, schema=schema, ui_schema=ui_schema, state_schema=state_schema)
-
+        self.uniform_dict = state_schema
         # Connections
         self.widget_schema.widget.widgets["lower_limit"].valueChanged.connect(self.test_function)
+
+    def update_dictionary(self, data):
+        self.uniform_dict = data
 
     def test_function(self, value: float):
         print("Value: {0}".format(value))
@@ -36,3 +42,6 @@ class UniformDistribution(QtWidgets.QWidget,
             self.external_errors(errors=[QError],
                                  validation_origin="lower_limit",
                                  widget_schema=self.widget_schema)
+
+    def get_dictionary(self):
+        return self.uniform_dict

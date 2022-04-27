@@ -73,7 +73,7 @@ class OptimizationSuiteGui(QtWidgets.QMainWindow, OptimizationBasicGui):
     def __init__(self, parent=None):
         super().__init__(parent)
 
-        self.optimizationlogic = OptimizationLogic()
+        self.optimizationlogic = OptimizationLogic(parent=None)
 
         # Handle Thread for the optimization
         self.thread_optimization = QtCore.QThread(self)
@@ -103,7 +103,10 @@ class OptimizationSuiteGui(QtWidgets.QMainWindow, OptimizationBasicGui):
 
 def main():
     import sys
-    app = QtWidgets.QApplication(sys.argv)
+    # Check here for the next line https://stackoverflow.com/questions/56159475/qt-webengine-seems-to-be-initialized
+    QtCore.QCoreApplication.setAttribute(QtCore.Qt.AA_ShareOpenGLContexts, attribute=None)
+
+    app = QtWidgets.QApplication()
     win = OptimizationSuiteGui()
     sys.exit(app.exec_())
 

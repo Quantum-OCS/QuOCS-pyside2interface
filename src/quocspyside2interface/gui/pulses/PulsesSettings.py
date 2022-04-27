@@ -18,11 +18,13 @@ from qtpy import QtWidgets, QtGui
 from qtpy import uic
 import os
 
-from quocspyside2interface.gui.pulses.basis.FourierBasis import FourierBasis
+# from quocspyside2interface.gui.pulses.basis.FourierBasis import FourierBasis
 from quocspyside2interface.gui.pulses.basis.SigmoidBasis import SigmoidBasis
 from quocspyside2interface.gui.pulses.GetFromFileFunction import GetFromFileFunction
 from quocspyside2interface.gui.pulses.LambdaFunction import LambdaFunction
 from quocspyside2interface.gui.pulses.ListFunction import ListFunction
+
+from quocspyside2interface.qt_schema_quocs.fourierbasis import FourierBasis
 
 from quocspyside2interface.logic.pulses.PulseDictionary import PulseDictionary
 
@@ -43,13 +45,13 @@ class PulseSettings(QtWidgets.QWidget, PulseDefinitionWidget):
         self.pulse_dictionary = PulseDictionary(loaded_dictionary=loaded_dictionary)
 
         # Initial guess QButtonGroup
-        self.initial_guess_button_group = QtWidgets.QButtonGroup()
+        self.initial_guess_button_group = QtWidgets.QButtonGroup(parent=None)
         self.initial_guess_button_group.addButton(self.lambda_initial_guess_radio_button)
         self.initial_guess_button_group.addButton(self.list_initial_guess_radio_button)
         self.initial_guess_button_group.addButton(self.from_file_initial_guess_radio_button)
 
         # Scaling function QButtonGroup
-        self.scaling_function_button_group = QtWidgets.QButtonGroup()
+        self.scaling_function_button_group = QtWidgets.QButtonGroup(parent=None)
         self.scaling_function_button_group.addButton(self.lambda_scaling_function_radio_button)
         self.scaling_function_button_group.addButton(self.list_scaling_function_radio_button)
         self.scaling_function_button_group.addButton(self.from_file_scaling_function_radio_button)
@@ -62,10 +64,12 @@ class PulseSettings(QtWidgets.QWidget, PulseDefinitionWidget):
         # Basis form objects
         # TODO Take the list of available basis from a module or class
         self.basis_name = self.pulse_dictionary.basis.setdefault("basis_name", "Fourier")
+        # TODO Read the list from a json file
         self.basis_list = ["Fourier", "Sigmoid"]
         basis_dict = self.pulse_dictionary.basis
-        self.fourier_basis_form = FourierBasis(
-            loaded_dictionary=self._load_dictionary(self.basis_name, "Fourier", basis_dict))
+        self.fourier_basis_form = FourierBasis()
+        # self.fourier_basis_form = FourierBasis(
+        #     loaded_dictionary=self._load_dictionary(self.basis_name, "Fourier", basis_dict))
         self.sigmoid_basis_form = SigmoidBasis(
             loaded_dictionary=self._load_dictionary(self.basis_name, "Sigmoid", basis_dict))
         self.basis_obj = [self.fourier_basis_form, self.sigmoid_basis_form]
@@ -154,7 +158,7 @@ class PulseSettings(QtWidgets.QWidget, PulseDefinitionWidget):
         # In case the time_dict is empty, leave the time edit blank
         if len(time_dict) == 0:
             self.time_line_edit.setText("")
-        # Otherwise fill the combobox
+        # Otherwise, fill the combobox
         else:
             for element in time_dict:
                 self.times_value_list.append(time_dict[element])

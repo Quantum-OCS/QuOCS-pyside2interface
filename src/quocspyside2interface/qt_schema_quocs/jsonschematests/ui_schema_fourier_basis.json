@@ -1,8 +1,0 @@
-{
-    "basisVectorNumber": {
-        "ui:widget": "spin"
-    },
-    "distributionArea": {
-        "ui:widget": "empty"
-    }
-}

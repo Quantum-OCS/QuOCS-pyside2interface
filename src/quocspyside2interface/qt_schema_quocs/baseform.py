@@ -16,6 +16,7 @@ class BaseForm:
     widget_builder_obj: WidgetBuilder
     validator: None
     error_plain_text: QtWidgets.QPlainTextEdit
+    form_name: str
 
     def setupUi(self, Form: QtWidgets.QWidget = None,
                 schema: Dict = None,
@@ -116,4 +117,9 @@ class BaseForm:
                                            exception_obj=err)
 
     def clear_errors(self):
+        """ Clean the errors in the widget """
         self.error_widget.hide()
+
+    def update_dictionary(self, data):
+        """ Update the dictionary at every form update """
+        raise ImportError("Implement the update dictionary in the {0} class".format(self.form_name))

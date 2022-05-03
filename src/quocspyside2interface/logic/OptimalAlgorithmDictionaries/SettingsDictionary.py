@@ -24,6 +24,12 @@ class SettingsDictionary:
             for element in loaded_dictionary:
                 setattr(self, element, loaded_dictionary[element])
 
+    def update_dictionary(self, data: dict):
+        """ Update the dictionary with the data content """
+        for key in data:
+            if key in self.__dict__:
+                self.__dict__[key] = data[key]
+
     @abstractmethod
     def get_dictionary(self):
         raise NotImplementedError("This method has to be implemented in the Settings class")

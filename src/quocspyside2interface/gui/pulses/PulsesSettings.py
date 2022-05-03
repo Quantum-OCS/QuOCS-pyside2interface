@@ -18,6 +18,8 @@ from qtpy import QtWidgets, QtGui
 from qtpy import uic
 import os
 
+from quocspyside2interface.logic.utilities.utils import load_dictionary
+
 # from quocspyside2interface.gui.pulses.basis.FourierBasis import FourierBasis
 from quocspyside2interface.gui.pulses.basis.SigmoidBasis import SigmoidBasis
 from quocspyside2interface.gui.pulses.GetFromFileFunction import GetFromFileFunction
@@ -67,20 +69,21 @@ class PulseSettings(QtWidgets.QWidget, PulseDefinitionWidget):
         # TODO Read the list from a json file
         self.basis_list = ["Fourier", "Sigmoid"]
         basis_dict = self.pulse_dictionary.basis
-        self.fourier_basis_form = FourierBasis()
+        self.fourier_basis_form = FourierBasis(
+            loaded_dictionary=load_dictionary(self.basis_name, "Fourier", basis_dict))
         # self.fourier_basis_form = FourierBasis(
         #     loaded_dictionary=self._load_dictionary(self.basis_name, "Fourier", basis_dict))
         self.sigmoid_basis_form = SigmoidBasis(
-            loaded_dictionary=self._load_dictionary(self.basis_name, "Sigmoid", basis_dict))
+            loaded_dictionary=load_dictionary(self.basis_name, "Sigmoid", basis_dict))
         self.basis_obj = [self.fourier_basis_form, self.sigmoid_basis_form]
         self.basis_funs = [self.set_fourier_basis_widget, self.set_sigmoid_basis_widget]
         # Initial Guess
-        # TODO Think how to load the dictionary based fro different initial guess
+        # TODO Think how to load the dictionary based for different initial guess
         self.initial_guess_lambda_function_form = LambdaFunction(loaded_dictionary=self.pulse_dictionary.initial_guess)
         self.initial_guess_list_function_form = ListFunction()
         self.initial_guess_get_from_file_form = GetFromFileFunction()
         # Scaling Function
-        # TODO Think how to load the dictionary based fro different initial guess
+        # TODO Think how to load the dictionary based for different initial guess
         self.scaling_function_lambda_function_form = \
             LambdaFunction(loaded_dictionary=self.pulse_dictionary.scaling_function)
         self.scaling_function_list_function_form = ListFunction()
@@ -121,12 +124,6 @@ class PulseSettings(QtWidgets.QWidget, PulseDefinitionWidget):
         self.is_initialization = False
 
         self.times_value_list = []
-
-    def _load_dictionary(self, arg1: str, arg2: str, dictionary: dict) -> dict:
-        if arg1 == arg2:
-            return dictionary
-        else:
-            return {}
 
     def _initialize_settings(self):
         # Set initial widgets
@@ -178,28 +175,29 @@ class PulseSettings(QtWidgets.QWidget, PulseDefinitionWidget):
                      "initial_guess": initial_guess_dict}
         return full_dict
 
-    def set_basis(self, basis_index:int):
+    def set_basis(self, basis_index: int):
         self.basis_funs[basis_index]()
 
-    def set_amplitude_variation(self, amplitude_variation):
+    def set_amplitude_variation(self, amplitude_variation: float):
         self.pulse_dictionary.amplitude_variation = float(amplitude_variation)
 
-    def set_upper_limit(self, upper_limit):
+    def set_upper_limit(self, upper_limit: float):
         self.pulse_dictionary.upper_limit = float(upper_limit)
 
-    def set_lower_limit(self, lower_limit):
+    def set_lower_limit(self, lower_limit: float):
         self.pulse_dictionary.lower_limit = float(lower_limit)
 
-    def set_bins_number(self, bins_number):
+    def set_bins_number(self, bins_number: float):
         self.pulse_dictionary.bins_number = bins_number
 
-    def set_pulse_name(self, pulse_name):
+    def set_pulse_name(self, pulse_name: str):
         # Update the pulse name in the dictionary
         self.pulse_dictionary.pulse_name = pulse_name
         # update tab name only outside the initialization mode to prevent wrong tab name update!
         if not self.is_initialization:
             self.update_name_signal.emit(pulse_name)
 
+    # TODO Replace the following function with a more general function
     def set_initial_guess_lambda_function_widget(self):
         self.initial_guess_scroll_area.takeWidget()
         self.initial_guess_scroll_area.setWidget(self.initial_guess_lambda_function_form)

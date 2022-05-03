@@ -1,0 +1,8 @@
+{
+    "lower_limit": {
+        "ui:widget": "spin"
+    },
+    "upper_limit": {
+        "ui:widget": "spin"
+    }
+}

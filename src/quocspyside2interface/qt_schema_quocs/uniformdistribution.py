@@ -43,5 +43,5 @@ class UniformDistribution(QtWidgets.QWidget,
                                  validation_origin="lower_limit",
                                  widget_schema=self.widget_schema)
 
-    def get_dictionary(self):
+    def get_dictionary(self) -> dict:
         return self.uniform_dict

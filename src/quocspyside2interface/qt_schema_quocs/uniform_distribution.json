@@ -1,0 +1,14 @@
+{
+    "type": "object",
+    "title": "Uniform distribution",
+    "properties": {
+        "lower_limit": {
+            "title": "Lower Limit",
+            "type": "number"
+        },
+        "upper_limit": {
+            "title": "Upper limit",
+            "type": "number"
+        }
+    }
+}

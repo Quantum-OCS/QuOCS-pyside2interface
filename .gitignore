@@ -1,3 +1,6 @@
+# uiclasses files
+src/quocspyside2interface/gui/uiclasses/*.py
+
 # Byte-compiled / optimized / DLL files
 **__pycache__/
 *.py[cod]

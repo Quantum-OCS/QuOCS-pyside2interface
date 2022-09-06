@@ -14,7 +14,9 @@
 #  limitations under the License.
 # ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
 
-import os, platform
+import sys, os, platform
+
+os.chdir(os.path.dirname(sys.argv[0]))
 
 ui_folder = os.path.join(os.getcwd(), "uifiles")
 class_folder = os.path.join(os.getcwd(), "uiclasses")

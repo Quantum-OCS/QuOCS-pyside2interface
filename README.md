@@ -7,42 +7,19 @@ A PySide2 interface for QuOCS
 [![Build Status](https://github.com/Quantum-OCS/QuOCS-pyside2interface/actions/workflows/unit_testing_linux.yml/badge.svg)](https://github.com/Quantum-OCS/QuOCS-pyside2interface/actions)
 [![Build Status](https://github.com/Quantum-OCS/QuOCS-pyside2interface/actions/workflows/unit_testing_windows.yml/badge.svg)](https://github.com/Quantum-OCS/QuOCS-pyside2interface/actions)
 
-## Create a virtual environment
-
-Create a virtual environment:
-```bash
-python3 -m venv ../quocspyside2interface-venv
-```
-Activate your virtual environment:
-```bash
-source ../pyside2interface-venv/bin/activate
-```
-Install basic packages
-```bash
-python -m pip install --upgrade pip setuptools wheel
-```
 ## Installation
 
-Install quocs_pyside2interface in your virtual environment
-```bash
+1) Download this repository as a compressed file and extract it on your computer or clone this repository via git
+
+2) Install quocs_pyside2interface by running the following command in the main folder
+
+~~~bash
 python -m pip install -e .
-```
+~~~
 
-## QtDesigner
+3) Convert the ui files for the GUI with PySide2 and PyQt5
 
-In the Linux OS you can install the qt designer with
-```bash
-sudo apt install qttools5-dev-tools
-```
-and run the designer
-```bash
-designer
-```
-Then the convertuipy.py script will convert all the ui files in the uifiles folder in the respective python classes
-
-## Tests
-
-Now you are able to use the tests scripts in the tests folder
-:)
-
-
+~~~bash
+python src/quocspyside2interface/gui/convertuipy.py
+python src/quocspyside2interface/gui/convertuipy_pyqt5.py
+~~~

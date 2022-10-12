@@ -27,6 +27,8 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests pytest numpy scipy matplotlib jax
           pip install -e .
+          python src/quocspyside2interface/gui/convertuipy.py
+          python src/quocspyside2interface/gui/convertuipy_pyqt5.py
       - name: Prepare Repo
         uses: actions/checkout@master
       - name: Run Tests

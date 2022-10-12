@@ -1,4 +1,4 @@
-name: Unit Tests Linux
+name: Unit Tests macOS
 
 on:
   push:
@@ -11,7 +11,7 @@ on:
 
 jobs:
   test:
-    runs-on: ubuntu-latest
+    runs-on: macOS-latest
     strategy:
       matrix:
         python-version: [ 3.6, 3.7, 3.8, 3.9 ]
@@ -27,8 +27,6 @@ jobs:
           python -m pip install --upgrade pip
           pip install requests pytest numpy scipy matplotlib jax
           pip install -e .
-          python src/quocspyside2interface/gui/convertuipy.py
-          python src/quocspyside2interface/gui/convertuipy_pyqt5.py
       - name: Prepare Repo
         uses: actions/checkout@master
       - name: Run Tests
